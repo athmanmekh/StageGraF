@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
 import collections.Iterables;
@@ -173,6 +174,7 @@ public class MultiGraph<V, E extends Graph.Edge<V>> implements Graph<V, E> {
 			boolean modified = super.remove(o);
 			if (modified) {
 				modCount++;
+				@SuppressWarnings("unchecked")
 				Graph.Edge<V> e = (Graph.Edge<V>) o;
 				V source = e.source();
 				V target = e.target();
@@ -357,18 +359,22 @@ public class MultiGraph<V, E extends Graph.Edge<V>> implements Graph<V, E> {
 	public Iterable<E> outgoingEdges(V vertex1, V vertex2) {
 		checkExistingVertex(vertex1);
 		checkExistingVertex(vertex2);
-		final V v1 = vertex1;
-		final V v2 = vertex2;
-		return new Iterable<E>() {
-
-			public Iterator<E> iterator() {
-				return outgoingMultiEdges.get(v1).containsKey(v2) ? new EdgeIterator(
-						outgoingMultiEdges.get(v1).get(v2))
-						: Iterators.<E> emptyIterator();
-
-			}
-
-		};
+//		final V v1 = vertex1;
+//		final V v2 = vertex2;
+		return () -> outgoingMultiEdges.get(vertex1).containsKey(vertex2) 
+				? new EdgeIterator(outgoingMultiEdges.get(vertex1).get(vertex2))
+				: Iterators.<E> emptyIterator();
+				
+//		return new Iterable<E>() {
+//
+//			public Iterator<E> iterator() {
+//				return outgoingMultiEdges.get(v1).containsKey(v2) ? new EdgeIterator(
+//						outgoingMultiEdges.get(v1).get(v2))
+//						: Iterators.<E> emptyIterator();
+//
+//			}
+//		};
+				
 	}
 
 	public Iterable<V> predecessors(V vertex) {
@@ -425,12 +431,13 @@ public class MultiGraph<V, E extends Graph.Edge<V>> implements Graph<V, E> {
 	}
 
 	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((edges == null) ? 0 : edges.hashCode());
-		result = prime * result
-				+ ((vertices == null) ? 0 : vertices.hashCode());
-		return result;
+//		final int prime = 31;
+//		int result = 1;
+//		result = prime * result + ((edges == null) ? 0 : edges.hashCode());
+//		result = prime * result
+//				+ ((vertices == null) ? 0 : vertices.hashCode());
+//		return result;
+		return Objects.hash(vertices, edges);
 	}
 
 	public boolean equals(Object o) {

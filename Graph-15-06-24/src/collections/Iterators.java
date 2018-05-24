@@ -51,8 +51,8 @@ public class Iterators {
 		return Arrays.asList(array).subList(fromIndex, toIndex).iterator();
 	}
 
-	public static <E> Iterator<E> appendElement(final E element,
-			final Iterator<? extends E> it) {
+	public static <E> Iterator<E> appendElement(E element,
+			Iterator<? extends E> it) {
 		return new Iterator<E>() {
 			private boolean first = true;
 
@@ -69,9 +69,9 @@ public class Iterators {
 				}
 			}
 
-			public void remove() {
-				throw new UnsupportedOperationException();
-			}
+//			public void remove() {
+//				throw new UnsupportedOperationException();
+//			}
 		};
 	}
 
@@ -171,6 +171,7 @@ public class Iterators {
 	 *            an array of elements
 	 * @return
 	 */
+	@SafeVarargs
 	public static <E> boolean hasElements(Iterator<E> it, E... elements) {
 		return Arrays.asList(elements).equals(fillList(new ArrayList<E>(), it));
 	}
@@ -205,9 +206,9 @@ public class Iterators {
 				throw new NoSuchElementException();
 			}
 
-			public void remove() {
-				throw new UnsupportedOperationException();
-			}
+//		public void remove() {
+//				throw new UnsupportedOperationException();
+//			}
 		};
 	}
 
