@@ -7,6 +7,7 @@ import java.util.Set;
 class InducedSubMultiGraph<V, E extends Graph.Edge<V>> extends
 		SubMultiGraph<V, E> implements InducedSubgraph<V, E> {
 
+	@SuppressWarnings("unchecked")
 	public InducedSubMultiGraph(MultiGraph<V, E> supergraph, Set<V> vertices) {
 		super(supergraph, vertices, (Set<E>) Collections.EMPTY_SET);
 		for (V v : vertices) {

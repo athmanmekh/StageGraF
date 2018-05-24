@@ -6,6 +6,7 @@ import util._1_2_3_Conjecture;
 import util._1_2_Conjecture;
 
 
+@SuppressWarnings("unused")
 public class GraphsTest {
 
 	/**

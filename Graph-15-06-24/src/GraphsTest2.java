@@ -8,6 +8,7 @@ import java.util.Map;
 
 import util.Graphs;
 
+@SuppressWarnings("unused")
 public class GraphsTest2 {
 
 	/**

@@ -129,6 +129,7 @@ public class MultiGraph<V, E extends Graph.Edge<V>> implements Graph<V, E> {
 		}
 	}
 
+	@SuppressWarnings("serial")
 	private class Edges extends HashSet<E> {
 
 		/**
@@ -205,6 +206,7 @@ public class MultiGraph<V, E extends Graph.Edge<V>> implements Graph<V, E> {
 		}
 	}
 
+	@SuppressWarnings("serial")
 	private class Vertices extends HashSet<V> {
 
 		public boolean add(V v) {

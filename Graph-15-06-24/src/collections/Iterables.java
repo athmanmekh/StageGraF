@@ -41,6 +41,7 @@ public class Iterables {
 	 *            an array of elements
 	 * @return
 	 */
+	@SafeVarargs
 	public static <E> boolean hasElements(Iterable<E> it, E... elements) {
 		return Iterators.hasElements(it.iterator(), elements);
 	}
