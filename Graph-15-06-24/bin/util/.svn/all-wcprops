@@ -1,17 +1,29 @@
 K 25
 svn:wc:ra_dav:version-url
-V 54
-/projet/svn/vanikoro/!svn/ver/803/Graph/unittests/util
+V 48
+/projet/svn/vanikoro/!svn/ver/894/Graph/src/util
 END
-RootedSpanningTreeImplTest.java
+Coloring.java
 K 25
 svn:wc:ra_dav:version-url
-V 86
-/projet/svn/vanikoro/!svn/ver/788/Graph/unittests/util/RootedSpanningTreeImplTest.java
+V 62
+/projet/svn/vanikoro/!svn/ver/803/Graph/src/util/Coloring.java
 END
-ColoringTest.java
+RootedSpanningTree.java
 K 25
 svn:wc:ra_dav:version-url
 V 72
-/projet/svn/vanikoro/!svn/ver/803/Graph/unittests/util/ColoringTest.java
+/projet/svn/vanikoro/!svn/ver/894/Graph/src/util/RootedSpanningTree.java
+END
+RootedSpanningTreeImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/projet/svn/vanikoro/!svn/ver/894/Graph/src/util/RootedSpanningTreeImpl.java
+END
+package-info.java
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/projet/svn/vanikoro/!svn/ver/894/Graph/src/util/package-info.java
 END

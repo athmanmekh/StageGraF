@@ -6,8 +6,8 @@ import java.util.Set;
 public interface Graph<V, E extends Graph.Edge<V>> {
 
 	/**
-	 * An edge. An edge links two vertices, called respectively the source and
-	 * the target of the edge.
+	 * An edge. An edge links two vertices, called respectively the source and the
+	 * target of the edge.
 	 * 
 	 * @param <V>
 	 *            the type of vertices
@@ -33,10 +33,25 @@ public interface Graph<V, E extends Graph.Edge<V>> {
 		 * @param vertex
 		 *            a vertex composing the edge
 		 * @throws IllegalArgumentException
-	 *             if <tt>vertex</tt> does not belong to the edge
+		 *             if <tt>vertex</tt> does not belong to the edge
 		 * @return the other vertex composing the edge
 		 */
-		V getOpposite(V vertex);
+		default V getOpposite(V vertex) {
+			V source = source();
+			V target = target();
+			if (vertex == null) {
+				if (source == null)
+					return target;
+				else if (target == null)
+					return source;
+			} else {
+				if (vertex.equals(source))
+					return target;
+				else if (vertex.equals(target))
+					return source;
+			}
+			throw new IllegalArgumentException("Vertex " + vertex + " does not belong to the graph");
+		};
 	}
 
 	/**
@@ -46,17 +61,16 @@ public interface Graph<V, E extends Graph.Edge<V>> {
 	 *            the edge to be added to this graph
 	 * @return <tt>true</tt> if the edge was added without error
 	 * @throws UnsupportedOperationException
-	 *             if the <tt>addEdge</tt> operation is not supported by this
-	 *             graph
+	 *             if the <tt>addEdge</tt> operation is not supported by this graph
 	 * @throws ClassCastException
-	 *             if the class of the specified edge prevents it from being
-	 *             added to this graph
+	 *             if the class of the specified edge prevents it from being added
+	 *             to this graph
 	 * @throws NullPointerException
 	 *             if the specified edge is null
 	 * @throws IllegalArgumentException
 	 *             if some property of the specified edge prevents it from being
-	 *             added to this graph. Especially, the vertices composing the
-	 *             edge must belong to the graph.
+	 *             added to this graph. Especially, the vertices composing the edge
+	 *             must belong to the graph.
 	 */
 	boolean addEdge(E edge);
 
@@ -70,8 +84,8 @@ public interface Graph<V, E extends Graph.Edge<V>> {
 	boolean addVertex(V vertex);
 
 	/**
-	 * Test if vertex1 and vertex2 are neighbors (e.g: if there is an edge
-	 * between vertex1 to vertex2)
+	 * Test if vertex1 and vertex2 are neighbors (e.g: if there is an edge between
+	 * vertex1 to vertex2)
 	 * 
 	 * @param vertex1
 	 *            a vertex
@@ -102,7 +116,9 @@ public interface Graph<V, E extends Graph.Edge<V>> {
 	 *            vertex to check if it is in the graph
 	 * @return true if vertex is in the graph
 	 */
-	boolean containsVertex(V vertex);
+	default boolean containsVertex(V vertex) {
+		return vertices().contains(vertex);
+	}
 
 	/**
 	 * Check if a given edge is in the graph.
@@ -111,7 +127,9 @@ public interface Graph<V, E extends Graph.Edge<V>> {
 	 *            edge to check if it is in the graph
 	 * @return true if edge is in the graph
 	 */
-	boolean containsEdge(E edge);
+	default boolean containsEdge(E edge) {
+		return edges().contains(edge);
+	}
 
 	/**
 	 * Remove edge from the graph.
@@ -150,14 +168,18 @@ public interface Graph<V, E extends Graph.Edge<V>> {
 	 * 
 	 * @return number of edges in the graph
 	 */
-	int size();
+	default int size() {
+		return edges().size();
+	}
 
 	/**
 	 * return number of vertices of the graph.
 	 * 
 	 * @return number of vertices in the graph
 	 */
-	int order();
+	default int order() {
+		return vertices().size();
+	}
 
 	/**
 	 * return the degree of a given vertex (outdegree + indegree)
@@ -239,7 +261,7 @@ public interface Graph<V, E extends Graph.Edge<V>> {
 	 * Gives the neighbors of a vertex.
 	 * 
 	 * @param vertex
-	 *        	a vertex of the graph
+	 *            a vertex of the graph
 	 * @return iterable containing all the neighbors of vertex
 	 */
 	Iterable<V> neighbors(V vertex);
@@ -281,24 +303,24 @@ public interface Graph<V, E extends Graph.Edge<V>> {
 	boolean removeAllVertices(Collection<V> vertices);
 
 	/**
-	 * Returns an InducedSubgraph containing all the vertices given in a set and the edges
-	 * linking them in the graph.
+	 * Returns an InducedSubgraph containing all the vertices given in a set and the
+	 * edges linking them in the graph.
 	 * 
 	 * @param vertices
 	 *            a Set of vertices which will compose the InducedSubgraph
-	 * @return an InducedSubgraph<V, E> containing all vertices given in the set and edges
-	 *         linking them
+	 * @return an InducedSubgraph<V, E> containing all vertices given in the set and
+	 *         edges linking them
 	 */
 	InducedSubgraph<V, E> inducedSubgraph(Set<V> vertices);
 
 	/**
-	 * Returns a PartialGraph containing all edges given in a set and all the 
+	 * Returns a PartialGraph containing all edges given in a set and all the
 	 * vertices of the graph
 	 * 
 	 * @param edges
 	 *            a Set of edges which will compose the PartialGraph returned
-	 * @return a PartialGraph<V, E> containing all edges given and vertices
-	 *         linked by them
+	 * @return a PartialGraph<V, E> containing all edges given and vertices linked
+	 *         by them
 	 */
 	PartialGraph<V, E> partialGraph(Set<E> edges);
 
