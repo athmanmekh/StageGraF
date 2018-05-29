@@ -1,4 +1,5 @@
 import graph.Graph;
+import static graph.Graph.Edge;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -16,7 +17,7 @@ public class TestComplexity {
 	public static void main(String[] args) throws IOException {
 		FileWriter f = new FileWriter(args[0]);
 		for (int i = 10; i < 1000; i += 10) {
-			Graph<Integer, Graph.Edge<Integer>> g = RandomGraphs
+			Graph<Integer, Edge<Integer>> g = RandomGraphs
 					.randomDirectedGraph(i, 0.1);
 			Date d1 = new Date();
 			Graphs.breadthFirstSearch(g, 0);

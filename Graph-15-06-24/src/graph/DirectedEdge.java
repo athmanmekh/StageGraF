@@ -1,6 +1,14 @@
 package graph;
 
-public class DirectedEdge<V> implements Graph.Edge<V> {
+/**
+ * 
+ * @author amekhzoumi
+ *
+ * static import to replace Graph.Edge by Edge
+ */
+import static graph.Graph.Edge;
+
+public class DirectedEdge<V> implements Edge<V> {
 	private V source;
 	private V target;
 

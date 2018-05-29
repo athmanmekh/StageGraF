@@ -2,7 +2,7 @@ import graph.DirectedEdge;
 import graph.Graph;
 import graph.MultiGraph;
 import util.Graphs;
-
+import static graph.Graph.Edge;
 
 public class GraphsTest3 {
 
@@ -21,8 +21,8 @@ public class GraphsTest3 {
 		
 	}
 	
-	private static Graph<String, Graph.Edge<String>> createGraph(String[] vertices, String[][] edges){
-		Graph<String, Graph.Edge<String>> g = new MultiGraph<String, Graph.Edge<String>>();
+	private static Graph<String, Edge<String>> createGraph(String[] vertices, String[][] edges){
+		Graph<String, Edge<String>> g = new MultiGraph<String, Edge<String>>();
 		for (String v : vertices)
 			g.addVertex(v);
 		for (String[] edge : edges)
@@ -43,8 +43,8 @@ public class GraphsTest3 {
 		String[][] edges = { {s1, a1},{s1, a2},
 							{a2, s2},{a1, a3},{a3, s2}
 							};
-		Graph<String, Graph.Edge<String>> g = createGraph(vertices, edges);
-		Graphs.BipartitionResult<String, Graph.Edge<String>> result = Graphs.part2(g, null, s1, s2, 2, 3);
+		Graph<String, Edge<String>> g = createGraph(vertices, edges);
+		Graphs.BipartitionResult<String, Edge<String>> result = Graphs.part2(g, null, s1, s2, 2, 3);
 		
 		System.out.println("v1:" + result.v1);
 		System.out.println("v2:" + result.v2);
@@ -62,8 +62,8 @@ public class GraphsTest3 {
 		String[][] edges = { {s1, a3},{s1, a2},
 							{a2, s2},{a3, a1},{a1, s2}
 							};
-		Graph<String, Graph.Edge<String>> g = createGraph(vertices, edges);
-		Graphs.BipartitionResult<String, Graph.Edge<String>> result = Graphs.part2(g, null, s1, s2, 3, 2);
+		Graph<String, Edge<String>> g = createGraph(vertices, edges);
+		Graphs.BipartitionResult<String, Edge<String>> result = Graphs.part2(g, null, s1, s2, 3, 2);
 		
 		System.out.println("v1:" + result.v1);
 		System.out.println("v2:" + result.v2);
@@ -81,8 +81,8 @@ public class GraphsTest3 {
 		String[][] edges = { {s1, a3},{s1, a2},
 							{a2, a1},{a3, a1},{a2, s2},{a1, s2}
 							};
-		Graph<String, Graph.Edge<String>> g = createGraph(vertices, edges);
-		Graphs.BipartitionResult<String, Graph.Edge<String>> result = Graphs.part2(g, null, s1, s2, 3, 2);
+		Graph<String, Edge<String>> g = createGraph(vertices, edges);
+		Graphs.BipartitionResult<String, Edge<String>> result = Graphs.part2(g, null, s1, s2, 3, 2);
 		
 		System.out.println("v1:" + result.v1);
 		System.out.println("v2:" + result.v2);
@@ -101,8 +101,8 @@ public class GraphsTest3 {
 		String[][] edges = { {s1, a4},{a4, a2},{s1, a3},
 							{a3,a1},{a2,a1},{a2,s2},{a1,s2}
 							};
-		Graph<String, Graph.Edge<String>> g = createGraph(vertices, edges);
-		Graphs.BipartitionResult<String, Graph.Edge<String>> result = Graphs.part2(g, null, s1, s2, 2, 4);
+		Graph<String, Edge<String>> g = createGraph(vertices, edges);
+		Graphs.BipartitionResult<String, Edge<String>> result = Graphs.part2(g, null, s1, s2, 2, 4);
 		
 		System.out.println("v1:" + result.v1);
 		System.out.println("v2:" + result.v2);
@@ -123,8 +123,8 @@ public class GraphsTest3 {
 		String[][] edges = { {s1, a1},{s1, a2},{s1, a3},{s1, a4},
 							{a1, s2},{a2, s2},{a3, s2},{a4, s2}
 							};
-		Graph<String, Graph.Edge<String>> g = createGraph(vertices, edges);
-		Graphs.BipartitionResult<String, Graph.Edge<String>> result = Graphs.part2(g, null, s1, s2, 3, 3);
+		Graph<String, Edge<String>> g = createGraph(vertices, edges);
+		Graphs.BipartitionResult<String, Edge<String>> result = Graphs.part2(g, null, s1, s2, 3, 3);
 		
 		System.out.println("v1:" + result.v1);
 		System.out.println("v2:" + result.v2);
@@ -151,8 +151,8 @@ public class GraphsTest3 {
 							{s1, b1},{b1, a1},{b2, a4},{b3, a4},{a3, b3},{b3, a5},{a5, b4}
 							};
 		
-		Graph<String, Graph.Edge<String>> g = createGraph(vertices, edges);
-		Graphs.BipartitionResult<String, Graph.Edge<String>> result = Graphs.part2(g, null, s1, s2, 6, 5);		
+		Graph<String, Edge<String>> g = createGraph(vertices, edges);
+		Graphs.BipartitionResult<String, Edge<String>> result = Graphs.part2(g, null, s1, s2, 6, 5);		
 		System.out.println("v1:" + result.v1);
 		System.out.println("v2:" + result.v2);
 	}

@@ -1,7 +1,7 @@
 import graph.DirectedEdge;
 import graph.Graph;
-import graph.Graph.Edge;
 import graph.MultiGraph;
+import static graph.Graph.Edge;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -139,8 +139,8 @@ public class GraphsTest2 {
 //								{{g, i}, {"6"}},{{g, h}, {"1"}},
 //								{{h, i}, {"7"}},
 //							};
-//		Map<Graph.Edge<String>, Integer> w8	= new HashMap<Graph.Edge<String>, Integer>();
-//		Graph<String, Graph.Edge<String>> g8 = new MultiGraph<String, Graph.Edge<String>>();
+//		Map<Edge<String>, Integer> w8	= new HashMap<Edge<String>, Integer>();
+//		Graph<String, Edge<String>> g8 = new MultiGraph<String, Edge<String>>();
 //		for (String v : v8) g8.addVertex(v);
 //		for (String[][] e1 : e8){
 //			Edge<String> ee = new DirectedEdge<String>(e1[0][0], e1[0][1]); 
@@ -161,8 +161,8 @@ public class GraphsTest2 {
 //								{{d, e}, {"15"}},{{d, f}, {"6"}},{{e, f}, {"8"}},
 //								{{g, f}, {"11"}},{{g, e}, {"9"}},
 //							};
-//		Map<Graph.Edge<String>, Integer> w9	= new HashMap<Graph.Edge<String>, Integer>();
-//		Graph<String, Graph.Edge<String>> g9 = new MultiGraph<String, Graph.Edge<String>>();
+//		Map<Edge<String>, Integer> w9	= new HashMap<Edge<String>, Integer>();
+//		Graph<String, Edge<String>> g9 = new MultiGraph<String, Edge<String>>();
 //		for (String v : v9) g9.addVertex(v);
 //		for (String[][] e1 : e9){
 //			Edge<String> ee = new DirectedEdge<String>(e1[0][0], e1[0][1]); 
@@ -174,8 +174,8 @@ public class GraphsTest2 {
 		
 	}
 	
-	private static Graph<String, Graph.Edge<String>> createGraph(String[] vertices, String[][] edges){
-		Graph<String, Graph.Edge<String>> g = new MultiGraph<String, Graph.Edge<String>>();
+	private static Graph<String, Edge<String>> createGraph(String[] vertices, String[][] edges){
+		Graph<String, Edge<String>> g = new MultiGraph<String, Edge<String>>();
 		for (String v : vertices)
 			g.addVertex(v);
 		for (String[] edge : edges)

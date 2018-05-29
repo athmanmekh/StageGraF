@@ -1,7 +1,7 @@
 import graph.DirectedEdge;
 import graph.Graph;
-import graph.Graph.Edge;
 import graph.MultiGraph;
+import static graph.Graph.Edge;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -33,8 +33,8 @@ public class GraphsTest4 {
 //								{{b,c}, {"3"}},{{b,t}, {"7"}},
 //								{{d,a}, {"5"}},{{d,t}, {"10"}},
 //							};
-//		Map<Graph.Edge<String>, Integer> w2	= new HashMap<Graph.Edge<String>, Integer>();
-//		Graph<String, Graph.Edge<String>> g2 = new MultiGraph<String, Graph.Edge<String>>();
+//		Map<Edge<String>, Integer> w2	= new HashMap<Edge<String>, Integer>();
+//		Graph<String, Edge<String>> g2 = new MultiGraph<String, Edge<String>>();
 //		for (String v : vertices2) g2.addVertex(v);
 //		for (String[][] e : edges2){
 //			Edge<String> edge = new DirectedEdge<String>(e[0][0], e[0][1]); 
@@ -42,7 +42,7 @@ public class GraphsTest4 {
 //			w2.put(edge, Integer.valueOf(e[1][0]));
 //		}
 //		
-//		FlowResults<Graph.Edge<String>> result = Graphs.fordFulkersonV01(g2, s, t, w2);
+//		FlowResults<Edge<String>> result = Graphs.fordFulkersonV01(g2, s, t, w2);
 //		System.out.println(result);
 //		
 		final String w = "w";
@@ -58,9 +58,9 @@ public class GraphsTest4 {
 								{{z,w}, {"2","4"}},{{z,t}, {"2","6"}},
 							};
 		
-		Map<Graph.Edge<String>, Integer> b3	= new HashMap<Graph.Edge<String>, Integer>();
-		Map<Graph.Edge<String>, Integer> c3	= new HashMap<Graph.Edge<String>, Integer>();
-		Graph<String, Graph.Edge<String>> g3 = new MultiGraph<String, Graph.Edge<String>>();
+		Map<Edge<String>, Integer> b3	= new HashMap<Edge<String>, Integer>();
+		Map<Edge<String>, Integer> c3	= new HashMap<Edge<String>, Integer>();
+		Graph<String, Edge<String>> g3 = new MultiGraph<String, Edge<String>>();
 		for (String v : vertices3) g3.addVertex(v);
 		for (String[][] e : edges3){
 			Edge<String> edge = new DirectedEdge<String>(e[0][0], e[0][1]); 
@@ -69,7 +69,7 @@ public class GraphsTest4 {
 			c3.put(edge, Integer.valueOf(e[1][1]));
 		}
 		
-		FlowResults<Graph.Edge<String>> result1 = Graphs.networkLowerUpperBound(g3, s, t, b3, c3);
+		FlowResults<Edge<String>> result1 = Graphs.networkLowerUpperBound(g3, s, t, b3, c3);
 		System.out.println(result1);
 	}
 

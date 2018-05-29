@@ -1,5 +1,5 @@
 package graph;
-
+import static graph.Graph.Edge;
 import java.util.Collection;
 
 /**
@@ -7,7 +7,7 @@ import java.util.Collection;
  * super graph has been modified. A ConcurrentModificationException will be
  * raised in this case.
  */
-public interface InducedSubgraph<V, E extends Graph.Edge<V>> extends
+public interface InducedSubgraph<V, E extends Edge<V>> extends
 		Subgraph<V, E> {
 	/**
 	 * Unsupported operation, an edge cannot be added into an induced subgraph

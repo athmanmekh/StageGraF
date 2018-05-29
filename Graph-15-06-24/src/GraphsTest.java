@@ -5,6 +5,13 @@ import util.Vizing;
 import util._1_2_3_Conjecture;
 import util._1_2_Conjecture;
 
+/**
+ * 
+ * @author amekhzoumi
+ *
+ * static import to replace Graph.Edge by Edge
+ */
+import static graph.Graph.Edge;
 
 @SuppressWarnings("unused")
 public class GraphsTest {
@@ -33,8 +40,8 @@ public class GraphsTest {
 //								{{_5, _3}, {"5"}},{{_5, _6}, {"1"}},
 //								{{_6, _4}, {"2"}}
 //							};
-//		Map<Graph.Edge<String>, Double> w1	= new HashMap<Graph.Edge<String>, Double>();
-//		Graph<String, Graph.Edge<String>> g1 = new MultiGraph<String, Graph.Edge<String>>();
+//		Map<Edge<String>, Double> w1	= new HashMap<Edge<String>, Double>();
+//		Graph<String, Edge<String>> g1 = new MultiGraph<String, Edge<String>>();
 //		for (String v : vertices1) g1.addVertex(v);
 //		for (String[][] e : edges1){
 //			Edge<String> edge = new DirectedEdge<String>(e[0][0], e[0][1]); 
@@ -59,8 +66,8 @@ public class GraphsTest {
 //								{{E, F}, {"1"}},{{E, D}, {"1"}},
 //								{{F, B}, {"4"}}
 //							};
-//		Map<Graph.Edge<String>, Double> w2	= new HashMap<Graph.Edge<String>, Double>();
-//		Graph<String, Graph.Edge<String>> g2 = new MultiGraph<String, Graph.Edge<String>>();
+//		Map<Edge<String>, Double> w2	= new HashMap<Edge<String>, Double>();
+//		Graph<String, Edge<String>> g2 = new MultiGraph<String, Edge<String>>();
 //		for (String v : vertices2) g2.addVertex(v);
 //		for (String[][] e : edges2){
 //			Edge<String> edge = new DirectedEdge<String>(e[0][0], e[0][1]); 
@@ -78,8 +85,8 @@ public class GraphsTest {
 //								{{C, A}, {"3"}},
 //								{{D, B}, {"-5"}},{{D, C}, {"-1"}}
 //							};
-//		Map<Graph.Edge<String>, Double> w3	= new HashMap<Graph.Edge<String>, Double>();
-//		Graph<String, Graph.Edge<String>> g3 = new MultiGraph<String, Graph.Edge<String>>();
+//		Map<Edge<String>, Double> w3	= new HashMap<Edge<String>, Double>();
+//		Graph<String, Edge<String>> g3 = new MultiGraph<String, Edge<String>>();
 //		for (String v : vertices3) g3.addVertex(v);
 //		for (String[][] e : edges3){
 //			Edge<String> edge = new DirectedEdge<String>(e[0][0], e[0][1]); 
@@ -101,8 +108,8 @@ public class GraphsTest {
 								{{_3, _2}, {"9"}},{{_3, T}, {"20"}},
 								{{_4, _3}, {"7"}},{{_4, T}, {"4"}}
 							};
-		Map<Graph.Edge<String>, Integer> c4	= new HashMap<Graph.Edge<String>, Integer>();
-		Graph<String, Graph.Edge<String>> g4 = new MultiGraph<String, Graph.Edge<String>>();
+		Map<Edge<String>, Integer> c4	= new HashMap<Edge<String>, Integer>();
+		Graph<String, Edge<String>> g4 = new MultiGraph<String, Edge<String>>();
 		for (String v : vertices4) g4.addVertex(v);
 		for (String[][] e : edges4){
 			Edge<String> edge = new DirectedEdge<String>(e[0][0], e[0][1]); 

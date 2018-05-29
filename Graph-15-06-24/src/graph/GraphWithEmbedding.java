@@ -1,5 +1,5 @@
 package graph;
-
+import static graph.Graph.Edge;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -8,7 +8,7 @@ import java.util.Map;
 /** A graph with embedding is a graphe where incident edges of any vertex are cyclically 
  * ordered.
  */
-public class GraphWithEmbedding<V, E extends Graph.Edge<V>> {
+public class GraphWithEmbedding<V, E extends Edge<V>> {
 
 	private Map<V, List<E>> incidentEdges = new HashMap<V, List<E>>();
 

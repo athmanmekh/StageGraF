@@ -1,14 +1,15 @@
 import graph.DirectedEdge;
 import graph.Graph;
 import graph.MultiGraph;
+import static graph.Graph.Edge;
 
 public class Test {
-	static Graph<String, Graph.Edge<String>> g;
+	static Graph<String, Edge<String>> g;
 	static final String ONE = "one";
 	static final String TWO = "two";
 	static final String THREE = "three";
 	static final String FOUR = "four";
-	static Graph.Edge<String> E1;
+	static Edge<String> E1;
 
 	public static void main(String[] args) {
 		// Graph ({1, 2, 3, 4}, {(1,2), (1,3), (2,1), (2,2), (3,2)})
@@ -16,7 +17,7 @@ public class Test {
 		String[] vertices = { ONE, TWO, THREE, FOUR };
 		String[][] edges = { { ONE, TWO }, { ONE, THREE }, { TWO, ONE },
 				{ TWO, TWO }, { THREE, TWO } };
-		g = new MultiGraph<String, Graph.Edge<String>>();
+		g = new MultiGraph<String, Edge<String>>();
 		for (String v : vertices)
 			g.addVertex(v);
 		for (String[] e : edges)
