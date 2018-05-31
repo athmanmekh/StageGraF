@@ -4,7 +4,9 @@ import java.util.Collection;
 import java.util.ConcurrentModificationException;
 import java.util.Set;
 
-class SubMultiGraph<V, E extends Graph.Edge<V>> extends MultiGraph<V, E>
+import static graph.Graph.Edge;
+
+class SubMultiGraph<V, E extends Edge<V>> extends MultiGraph<V, E>
 		implements Subgraph<V, E> {
 
 	MultiGraph<V, E> supergraph;

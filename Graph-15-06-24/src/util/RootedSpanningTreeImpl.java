@@ -142,11 +142,15 @@ public class RootedSpanningTreeImpl<V, E extends Graph.Edge<V>> implements
 
 	public Iterable<E> coedges() {
 		return Iterables.iterableWithPredicate(graph.edges(),
-				new Predicate<E>() {
+				/*
+				 * athman lambda expression
+				 */
+				(e) -> isCoedge(e)
+				/*new Predicate<E>() {
 					public boolean predicate(E e) {
 						return isCoedge(e);
 					}
-				});
+				}*/);
 	}
 
 	@Override
@@ -154,11 +158,15 @@ public class RootedSpanningTreeImpl<V, E extends Graph.Edge<V>> implements
 		checkVertex(vertex);
 		final V v = vertex;
 		return Iterables.iterableWithPredicate(graph.neighbors(v),
-				new Predicate<V>() {
+				/*
+				 * athman lambda expression
+				 */
+				(w) -> !tree.areNeighbors(v, w)
+				/*new Predicate<V>() {
 					public boolean predicate(V w) {
 						return !tree.areNeighbors(v, w);
 					}
-				});
+				}*/);
 	}
 
 	@Override
@@ -301,11 +309,15 @@ public class RootedSpanningTreeImpl<V, E extends Graph.Edge<V>> implements
 	public Iterable<E> outgoingEdges(V vertex) {
 		final V v = vertex;
 		return Iterables.iterableWithPredicate(tree.incidentEdges(vertex),
-				new Predicate<E>() {
+				/*
+				 * athman lambda expression
+				 */
+				(e) -> !e.getOpposite(v).equals(father(v))
+				/*new Predicate<E>() {
 					public boolean predicate(E e) {
 						return !e.getOpposite(v).equals(father(v));
 					}
-				});
+				}*/);
 	}
 
 	@Override

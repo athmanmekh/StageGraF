@@ -4,29 +4,38 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+@SuppressWarnings("unused")
 public class Iterables {
 
 	public static <E> Iterable<E> iterableWithPredicate(
 			final Iterable<? extends E> iterable, final Predicate<? super E> p) {
-		return new Iterable<E>() {
+		/*
+		 * athman lambda expresssion
+		 */
+		return () -> Iterators.iteratorWithPredicate(iterable.iterator(), p);
+				/*new Iterable<E>() {
 			@Override
 			public Iterator<E> iterator() {
 				return Iterators.iteratorWithPredicate(iterable.iterator(), p);
 			}
 
-		};
+		};*/
 	}
 
 	public static <E> Iterable<E> append(final Iterable<? extends E> it1,
 			final Iterable<? extends E> it2) {
-		return new Iterable<E>() {
+		/*
+		 * athman lambda expresssion
+		 */
+		return () -> Iterators.append(it1.iterator(), it2.iterator());
+				/*new Iterable<E>() {
 
 			@Override
 			public Iterator<E> iterator() {
 				return Iterators.append(it1.iterator(), it2.iterator());
 			}
 
-		};
+		};*/
 	}
 
 	/**
@@ -62,21 +71,29 @@ public class Iterables {
 	}
 
 	public static <E> Iterable<E> emptyIterable() {
-		return new Iterable<E>() {
+		/*
+		 * athman lambda expresssion
+		 */
+		return () -> Iterators.emptyIterator();
+				/*new Iterable<E>() {
 			@Override
 			public Iterator<E> iterator() {
 				return Iterators.emptyIterator();
 			}
-		};
+		};*/
 	}
 
 	public static <E> Iterable<E> singleton(final E element) {
-		return new Iterable<E>() {
+		/*
+		 * athman lambda expresssion
+		 */
+		return () -> Iterators.singleton(element);
+				/*new Iterable<E>() {
 			@Override
 			public Iterator<E> iterator() {
 				return Iterators.singleton(element);
 			}
-		};
+		};*/
 	}
 
 	public static <E> List<E> fillList(List<E> list, Iterable<? extends E> it) {

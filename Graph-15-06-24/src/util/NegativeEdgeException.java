@@ -1,18 +1,18 @@
 package util;
 
-import graph.Graph;
+import static graph.Graph.Edge;
 
 @SuppressWarnings("serial")
 public class NegativeEdgeException extends Exception {
-	private Graph.Edge<?> e;
+	private Edge<?> e;
 	private double weight;
 	
-	public NegativeEdgeException(Graph.Edge<?> e, double weight) {
+	public NegativeEdgeException(Edge<?> e, double weight) {
 		this.e = e;
 		this.weight = weight;
 	}
 	
-	public Graph.Edge<?> edge() {
+	public Edge<?> edge() {
 		return e;
 	}
 	

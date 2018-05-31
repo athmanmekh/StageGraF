@@ -6,6 +6,8 @@ import java.util.Map;
 
 import graph.Graph;
 
+import static graph.Graph.Edge;
+
 public class DepthFirstSearch {
 	public static interface DepthFirstSearchData<V> {
 		public V father();
@@ -39,12 +41,12 @@ public class DepthFirstSearch {
 		}
 	}
 
-	public static <V, E extends Graph.Edge<V>> Map<V, DepthFirstSearchData<V>> depthFirstSearch(
+	public static <V, E extends Edge<V>> Map<V, DepthFirstSearchData<V>> depthFirstSearch(
 			Graph<V, E> g) {
 		return depthFirstSearch(g, true);
 	}
 
-	public static <V, E extends Graph.Edge<V>> Map<V, DepthFirstSearchData<V>> depthFirstSearch(
+	public static <V, E extends Edge<V>> Map<V, DepthFirstSearchData<V>> depthFirstSearch(
 			Graph<V, E> g, boolean directed) {
 		Map<V, DepthFirstSearchData<V>> map = new HashMap<V, DepthFirstSearchData<V>>(
 				g.order());
@@ -62,7 +64,7 @@ public class DepthFirstSearch {
 		return map;
 	}
 
-	private static <V, E extends Graph.Edge<V>> void visitDFS(Graph<V, E> g,
+	private static <V, E extends Edge<V>> void visitDFS(Graph<V, E> g,
 			V v, int time, Map<V, DepthFirstSearchData<V>> map, boolean directed) {
 		DepthFirstSearchDataImpl<V> vData = (DepthFirstSearchDataImpl<V>) map
 				.get(v);

@@ -1,12 +1,13 @@
 package graph;
 
+import static graph.Graph.Edge;
 
 /**
  * All the calls of subgraph's methods become illegal as soon as the super graph
  * has been modified. So a ConcurrentModificationException will be raised in
  * this case.
  */
-public interface Subgraph<V, E extends Graph.Edge<V>> extends Graph<V, E> {
+public interface Subgraph<V, E extends Edge<V>> extends Graph<V, E> {
 	/**
 	 * Accessor to the super graph
 	 * 

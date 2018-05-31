@@ -2,12 +2,14 @@ package graph;
 
 import java.util.Collection;
 
+import static graph.Graph.Edge;
+
 /**
  * All the calls of spanning subgraph's methods become illegal as soon as the
  * super graph has been modified. So an ConcurrentModificationException will be
  * raised in this case.
  */
-public interface PartialGraph<V, E extends Graph.Edge<V>> extends Subgraph<V, E> {
+public interface PartialGraph<V, E extends Edge<V>> extends Subgraph<V, E> {
 	/**
 	 * Add an edge if it's already in the super graph. If the edge is not into
 	 * the super graph, an IllegalArgumentException will be raised.

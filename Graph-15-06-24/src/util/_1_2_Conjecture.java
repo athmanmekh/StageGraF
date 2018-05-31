@@ -8,7 +8,8 @@ import java.util.Map;
 import graph.DirectedEdge;
 import graph.Graph;
 import graph.MultiGraph;
-import graph.Graph.Edge;
+
+import static graph.Graph.Edge;
 
 public class _1_2_Conjecture {
 
@@ -210,7 +211,7 @@ public class _1_2_Conjecture {
 				{ { _2, _4 }, { "14" } }, { { _3, _2 }, { "9" } },
 				{ { _3, T }, { "20" } }, { { _4, _3 }, { "7" } },
 				{ { _4, T }, { "4" } } };
-		Graph<String, Graph.Edge<String>> g4 = new MultiGraph<String, Graph.Edge<String>>();
+		Graph<String, Edge<String>> g4 = new MultiGraph<String, Edge<String>>();
 		for (String v : vertices4)
 			g4.addVertex(v);
 		for (String[][] e : edges4) {
@@ -218,7 +219,7 @@ public class _1_2_Conjecture {
 			g4.addEdge(edge);
 		}
 
-		Map<Graph.Edge<String>, Integer> edgeColoring = new HashMap<Graph.Edge<String>, Integer>();
+		Map<Edge<String>, Integer> edgeColoring = new HashMap<Edge<String>, Integer>();
 		Map<String, Integer> verticesColoring = new HashMap<String, Integer>();
 		coloring(g4, verticesColoring, edgeColoring);
 
@@ -244,7 +245,7 @@ public class _1_2_Conjecture {
 				{ { "17", "19" } }, { { "17", "20" } }, { { "18", "19" } },
 				{ { "18", "20" } }, { { "19", "20" } }, { { "1", "20" } },
 				{ { "6", "20" } } };
-		Graph<String, Graph.Edge<String>> g2 = new MultiGraph<String, Graph.Edge<String>>();
+		Graph<String, Edge<String>> g2 = new MultiGraph<String, Edge<String>>();
 		for (String v : vertices2)
 			g2.addVertex(v);
 		for (String[][] e : edges2) {
@@ -252,7 +253,7 @@ public class _1_2_Conjecture {
 			g2.addEdge(edge);
 		}
 
-		edgeColoring = new HashMap<Graph.Edge<String>, Integer>();
+		edgeColoring = new HashMap<Edge<String>, Integer>();
 		verticesColoring = new HashMap<String, Integer>();
 		coloring(g2, verticesColoring, edgeColoring);
 

@@ -4,7 +4,9 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Set;
 
-class InducedSubMultiGraph<V, E extends Graph.Edge<V>> extends
+import static graph.Graph.Edge;
+
+class InducedSubMultiGraph<V, E extends Edge<V>> extends
 		SubMultiGraph<V, E> implements InducedSubgraph<V, E> {
 
 	@SuppressWarnings("unchecked")

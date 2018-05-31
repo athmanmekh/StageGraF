@@ -1,8 +1,9 @@
 package util;
 import graph.DirectedEdge;
 import graph.Graph;
-import graph.Graph.Edge;
 import graph.MultiGraph;
+
+import static graph.Graph.Edge;
 
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -19,9 +20,9 @@ public class Vizing {
 	 * @param g graph to color
 	 * @return coloring of the graph which will contain delta+1 colors
 	 */
-	public static Map<Graph.Edge<String>, Integer> edgeColoring(
-			Graph<String, Graph.Edge<String>> g) {
-		Map<Graph.Edge<String>, Integer> coloring = new HashMap<Graph.Edge<String>, Integer>(); 
+	public static Map<Edge<String>, Integer> edgeColoring(
+			Graph<String, Edge<String>> g) {
+		Map<Edge<String>, Integer> coloring = new HashMap<Edge<String>, Integer>(); 
 
 		if (DEBUG) {
 			if (!coloredGraphIsValid(g, coloring)) {
@@ -133,14 +134,14 @@ public class Vizing {
 				{ { _2, _4 }, { "14" } }, { { _3, _2 }, { "9" } },
 				{ { _3, T }, { "20" } }, { { _4, _3 }, { "7" } },
 				{ { _4, T }, { "4" } } };
-		Graph<String, Graph.Edge<String>> g4 = new MultiGraph<String, Graph.Edge<String>>();
+		Graph<String, Edge<String>> g4 = new MultiGraph<String, Edge<String>>();
 		for (String v : vertices4)
 			g4.addVertex(v);
 		for (String[][] e : edges4) {
 			Edge<String> edge = new DirectedEdge<String>(e[0][0], e[0][1]);
 			g4.addEdge(edge);
 		}
-		Map<Graph.Edge<String>, Integer> color = edgeColoring(g4);
+		Map<Edge<String>, Integer> color = edgeColoring(g4);
 		displayColoredGraph(g4, color);
 
 		System.out.println("\ntest 2");
@@ -159,14 +160,14 @@ public class Vizing {
 				{ { "16", "19" } }, { { "16", "20" } }, { { "17", "18" } },
 				{ { "17", "19" } }, { { "17", "20" } }, { { "18", "19" } },
 				{ { "18", "20" } }, { { "19", "20" } } };
-		Graph<String, Graph.Edge<String>> g2 = new MultiGraph<String, Graph.Edge<String>>();
+		Graph<String, Edge<String>> g2 = new MultiGraph<String, Edge<String>>();
 		for (String v : vertices2)
 			g2.addVertex(v);
 		for (String[][] e : edges2) {
 			Edge<String> edge = new DirectedEdge<String>(e[0][0], e[0][1]);
 			g2.addEdge(edge);
 		}
-		Map<Graph.Edge<String>, Integer> color2 = edgeColoring(g2);// color(g2);
+		Map<Edge<String>, Integer> color2 = edgeColoring(g2);// color(g2);
 		displayColoredGraph(g2, color2);
 
 		System.out.println("\ntest 3");
@@ -388,14 +389,14 @@ public class Vizing {
 				{ { "221", "222" } }, { { "221", "223" } },
 				{ { "221", "224" } }, { { "222", "223" } },
 				{ { "222", "224" } }, { { "223", "224" } } };
-		Graph<String, Graph.Edge<String>> g3 = new MultiGraph<String, Graph.Edge<String>>();
+		Graph<String, Edge<String>> g3 = new MultiGraph<String, Edge<String>>();
 		for (String v : vertices3)
 			g3.addVertex(v);
 		for (String[][] e : edges3) {
 			Edge<String> edge = new DirectedEdge<String>(e[0][0], e[0][1]);
 			g3.addEdge(edge);
 		}
-		Map<Graph.Edge<String>, Integer> color3 = edgeColoring(g3);
+		Map<Edge<String>, Integer> color3 = edgeColoring(g3);
 		displayColoredGraph(g3, color3);
 
 		System.out.println("\n------  end testColor------");
@@ -417,8 +418,8 @@ public class Vizing {
 	 * @param X
 	 *            central vertex of the rotation
 	 */
-	public static void rotateFan(Graph<String, Graph.Edge<String>> g,
-			Map<Graph.Edge<String>, Integer> coloring, LinkedList<String> fan,
+	public static void rotateFan(Graph<String, Edge<String>> g,
+			Map<Edge<String>, Integer> coloring, LinkedList<String> fan,
 			String X) {
 		if (DEBUG) {
 			System.out.println("\nRotation :");
@@ -465,10 +466,10 @@ public class Vizing {
 	 * @return Map which contains colors associated with edges. Uncolored edges
 	 *         do not appear in the map.
 	 */
-	public static Map<Graph.Edge<String>, Integer> naiveColoration(
-			Graph<String, Graph.Edge<String>> g) {
-		Map<Graph.Edge<String>, Integer> coloring = new HashMap<Graph.Edge<String>, Integer>();
-		for (Graph.Edge<String> currentEdge : g.edges()) {
+	public static Map<Edge<String>, Integer> naiveColoration(
+			Graph<String, Edge<String>> g) {
+		Map<Edge<String>, Integer> coloring = new HashMap<Edge<String>, Integer>();
+		for (Edge<String> currentEdge : g.edges()) {
 			for (int currentColor = 0; currentColor < degreeMax(g) + 1; currentColor++) {
 				if (!coloring.containsKey(currentEdge)
 						&& colorFreeAtVertex(g, coloring, currentEdge.source(),
@@ -499,10 +500,10 @@ public class Vizing {
 	 * @return true if the fan is correct, false otherwise
 	 */
 	private static boolean fanIsCorrect(final Graph<String, Edge<String>> g,
-			final Map<Graph.Edge<String>, Integer> coloring,
+			final Map<Edge<String>, Integer> coloring,
 			final LinkedList<String> fan, final String vertex) {
 		for (int i = 0; i < fan.size() - 1; i++) {
-			for (Graph.Edge<String> e : g.incidentEdges(vertex, fan.get(i + 1))) {
+			for (Edge<String> e : g.incidentEdges(vertex, fan.get(i + 1))) {
 				if (!colorFreeAtVertex(g, coloring, fan.get(i), coloring.get(e))) {
 					System.out.println("\nThe fan is incorrect : the color "
 							+ coloring.get(e) + "is not free at " + fan.get(i));
@@ -525,8 +526,8 @@ public class Vizing {
 	 * @return true if the colored graph is valid, false otherwise
 	 */
 	private static boolean coloredGraphIsValid(
-			Graph<String, Graph.Edge<String>> g,
-			Map<Graph.Edge<String>, Integer> coloring) {
+			Graph<String, Edge<String>> g,
+			Map<Edge<String>, Integer> coloring) {
 		for (String vertex : g.vertices()) {
 			LinkedList<Integer> listColor = new LinkedList<Integer>();
 			for (Edge<String> e : g.incidentEdges(vertex)) {
@@ -555,7 +556,7 @@ public class Vizing {
 	private static LinkedList<String> convertFanEdgesToFanVertices(
 			LinkedList<Edge<String>> fanEdge, String vertex) {
 		LinkedList<String> fan = new LinkedList<String>();
-		for (Graph.Edge<String> e : fanEdge) {
+		for (Edge<String> e : fanEdge) {
 			fan.add(e.getOpposite(vertex));
 		}
 		return fan;
@@ -571,8 +572,8 @@ public class Vizing {
 	 *            contains colors of the edges
 	 */
 	public static void displayColoredGraph(
-			Graph<String, Graph.Edge<String>> g,
-			Map<Graph.Edge<String>, Integer> coloring) {
+			Graph<String, Edge<String>> g,
+			Map<Edge<String>, Integer> coloring) {
 		for (String vertex : g.vertices()) {
 			displayListColor(g, coloring, vertex);
 		}
@@ -589,8 +590,8 @@ public class Vizing {
 	 * @param vertex
 	 *            vertex to display
 	 */
-	private static void displayListColor(Graph<String, Graph.Edge<String>> g,
-			Map<Graph.Edge<String>, Integer> coloring, String vertex) {
+	private static void displayListColor(Graph<String, Edge<String>> g,
+			Map<Edge<String>, Integer> coloring, String vertex) {
 		System.out.print(" \n" + vertex + " : ");
 		for (Edge<String> edge : g.incidentEdges(vertex)) {
 			System.out.print(edge.getOpposite(vertex));
@@ -623,12 +624,12 @@ public class Vizing {
 	 * @return a correct fan created from X
 	 */
 	public static LinkedList<String> createMaximalFan(
-			Graph<String, Graph.Edge<String>> g,
-			Map<Graph.Edge<String>, Integer> coloring, String X,
-			Graph.Edge<String> uncoloredEdge) {
+			Graph<String, Edge<String>> g,
+			Map<Edge<String>, Integer> coloring, String X,
+			Edge<String> uncoloredEdge) {
 		LinkedList<Edge<String>> fan = new LinkedList<Edge<String>>();
 		List<Edge<String>> remainingEdges = new LinkedList<Edge<String>>();
-		for (Graph.Edge<String> e : g.incidentEdges(X)) {
+		for (Edge<String> e : g.incidentEdges(X)) {
 			if (coloring.containsKey(e)) {
 				remainingEdges.add(e);
 			}
@@ -651,14 +652,14 @@ public class Vizing {
 
 	}
 
-	public static void createCdPath(final Graph<String, Graph.Edge<String>> g,
-			final Map<Graph.Edge<String>, Integer> coloring,
+	public static void createCdPath(final Graph<String, Edge<String>> g,
+			final Map<Edge<String>, Integer> coloring,
 			final String vertex, int colorD, int colorC,
 			LinkedList<String> cdPath) {
 		System.out.print(vertex);
 
 		cdPath.add(vertex);
-		for (Graph.Edge<String> e : g.incidentEdges(vertex)) {
+		for (Edge<String> e : g.incidentEdges(vertex)) {
 			if (coloring.containsKey(e)) {
 				if (coloring.get(e) == colorD) {
 					System.out.print("-(" + colorD + ")->");
@@ -688,8 +689,8 @@ public class Vizing {
 	 * @return linkedList which contains the cdPath
 	 */
 	public static LinkedList<String> createCdPath(
-			final Graph<String, Graph.Edge<String>> g,
-			final Map<Graph.Edge<String>, Integer> coloring,
+			final Graph<String, Edge<String>> g,
+			final Map<Edge<String>, Integer> coloring,
 			final String vertex, int colorD, int colorC) {
 
 		LinkedList<String> cdPath = new LinkedList<String>();
@@ -714,8 +715,8 @@ public class Vizing {
 	 * @param colorC
 	 *            color c
 	 */
-	public static void invertCdPath(final Graph<String, Graph.Edge<String>> g,
-			final Map<Graph.Edge<String>, Integer> coloring, final String X,
+	public static void invertCdPath(final Graph<String, Edge<String>> g,
+			final Map<Edge<String>, Integer> coloring, final String X,
 			int colorD, int colorC) {
 
 		LinkedList<String> cdPath = createCdPath(g, coloring, X, colorD, colorC);
@@ -767,8 +768,8 @@ public class Vizing {
 	 *         is returned
 	 */
 	public static int getColorFreeAtVertex(
-			final Graph<String, Graph.Edge<String>> g,
-			final Map<Graph.Edge<String>, Integer> coloring,
+			final Graph<String, Edge<String>> g,
+			final Map<Edge<String>, Integer> coloring,
 			final String vertex, int... otherThanTheseColors) {
 		for (int i = 0; i <= degreeMax(g); i++) {
 			if (colorFreeAtVertex(g, coloring, vertex, i)) {
@@ -801,11 +802,11 @@ public class Vizing {
 	 * @return true if color is free at vertex, false otherwise
 	 */
 	private static boolean colorFreeAtVertex(
-			final Graph<String, Graph.Edge<String>> g,
-			final Map<Graph.Edge<String>, Integer> coloring,
+			final Graph<String, Edge<String>> g,
+			final Map<Edge<String>, Integer> coloring,
 			final String vertex, final int color) {
 
-		for (Graph.Edge<String> e : g.incidentEdges(vertex)) {
+		for (Edge<String> e : g.incidentEdges(vertex)) {
 			if (coloring.containsKey(e) && coloring.get(e) == color) {
 				return false;
 			}
@@ -820,7 +821,7 @@ public class Vizing {
 	 *            graph which we want the delta
 	 * @return delta of the graph
 	 */
-	public static int degreeMax(Graph<String, Graph.Edge<String>> g) {
+	public static int degreeMax(Graph<String, Edge<String>> g) {
 
 		int max = 0;
 		for (String vertex : g.vertices()) {

@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
+import static graph.Graph.Edge;
+
 public class RandomGraphVietnam {
 
 	public static class Position {
@@ -20,9 +22,9 @@ public class RandomGraphVietnam {
 		}
 	}
 
-	public static void randomGraph(Graph<String, Graph.Edge<String>> g,
+	public static void randomGraph(Graph<String, Edge<String>> g,
 			Integer numberOfVertices, Integer numberOfEdges,
-			Map<Graph.Edge<String>, Integer> w, int wMax) {
+			Map<Edge<String>, Integer> w, int wMax) {
 		Random rd = new Random();
 		List<Position> list = new ArrayList<Position>();
 
@@ -47,7 +49,7 @@ public class RandomGraphVietnam {
 		while (number <= numberOfEdges) {
 			int rdp = rd.nextInt(list.size());
 			Position p = list.get(rdp);
-			Graph.Edge<String> e = new DirectedEdge<String>(
+			Edge<String> e = new DirectedEdge<String>(
 					String.valueOf(p.x), String.valueOf(p.y));
 			g.addEdge(e);
 			w.put(e, rd.nextInt(wMax - 1) + 1);
@@ -56,9 +58,9 @@ public class RandomGraphVietnam {
 		}
 	}
 
-	public static void randomDiGraph(Graph<String, Graph.Edge<String>> g,
+	public static void randomDiGraph(Graph<String, Edge<String>> g,
 			Integer numberOfVertices, Integer numberOfEdges,
-			Map<Graph.Edge<String>, Integer> w, int wMax) {
+			Map<Edge<String>, Integer> w, int wMax) {
 		Random rd = new Random();
 		List<Position> list = new ArrayList<Position>();
 
@@ -85,7 +87,7 @@ public class RandomGraphVietnam {
 		while (number <= numberOfEdges) {
 			int rdp = rd.nextInt(list.size());
 			Position p = list.get(rdp);
-			Graph.Edge<String> e = new DirectedEdge<String>(
+			Edge<String> e = new DirectedEdge<String>(
 					String.valueOf(p.x), String.valueOf(p.y));
 			g.addEdge(e);
 			w.put(e, rd.nextInt(wMax - 1) + 1);
@@ -94,10 +96,10 @@ public class RandomGraphVietnam {
 		}
 	}
 
-	public static void randomNetwork(Graph<String, Graph.Edge<String>> g,
+	public static void randomNetwork(Graph<String, Edge<String>> g,
 			Integer numberOfVertices, Integer numberOfEdges,
-			Map<Graph.Edge<String>, Integer> l,
-			Map<Graph.Edge<String>, Integer> u, int min, int max) {
+			Map<Edge<String>, Integer> l,
+			Map<Edge<String>, Integer> u, int min, int max) {
 		Random rd = new Random();
 		List<Position> list = new ArrayList<Position>();
 
@@ -124,7 +126,7 @@ public class RandomGraphVietnam {
 		while (number <= numberOfEdges) {
 			int rdp = rd.nextInt(list.size());
 			Position p = list.get(rdp);
-			Graph.Edge<String> e = new DirectedEdge<String>(
+			Edge<String> e = new DirectedEdge<String>(
 					String.valueOf(p.x), String.valueOf(p.y));
 			g.addEdge(e);
 			int mid = (max + min) / 2;

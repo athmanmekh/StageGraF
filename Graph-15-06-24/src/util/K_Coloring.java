@@ -3,7 +3,8 @@ package util;
 import graph.DirectedEdge;
 import graph.Graph;
 import graph.MultiGraph;
-import graph.Graph.Edge;
+
+import static graph.Graph.Edge;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -70,7 +71,7 @@ public class K_Coloring {
 	}
 
 	private static void recoloring(Graph<String, Edge<String>> g,
-			Map<Graph.Edge<String>, Integer> coloring, String x0, int k,
+			Map<Edge<String>, Integer> coloring, String x0, int k,
 			List<String> path) {
 		if (DEBUG) {
 			System.out.println("\nrecoloring : "
@@ -174,7 +175,7 @@ public class K_Coloring {
 	}
 
 	private static void recoloring(Graph<String, Edge<String>> g,
-			Map<Graph.Edge<String>, Integer> coloring, String x0, int k) {
+			Map<Edge<String>, Integer> coloring, String x0, int k) {
 		if (DEBUG) {
 			System.out.println("recoloring : " + x0);
 		}
@@ -269,11 +270,11 @@ public class K_Coloring {
 	 *            graph to color
 	 * @return coloring of the graph
 	 */
-	public static Map<Graph.Edge<String>, Integer> h_coloring(
+	public static Map<Edge<String>, Integer> h_coloring(
 			Graph<String, Edge<String>> g) {
 
 		int degreeMax = Vizing.degreeMax(g);
-		Map<Graph.Edge<String>, Integer> coloring = naiveK_Coloration(g,
+		Map<Edge<String>, Integer> coloring = naiveK_Coloration(g,
 				degreeMax);
 		while (!checkKColoring2(g, coloring, degreeMax)) {
 
@@ -312,9 +313,9 @@ public class K_Coloring {
 	 *            graph to color, must be different of an odd cycle
 	 * @return good 2_coloring of the graph
 	 */
-	public static Map<Graph.Edge<String>, Integer> two_recoloring(
+	public static Map<Edge<String>, Integer> two_recoloring(
 			final Graph<String, Edge<String>> g,
-			Map<Graph.Edge<String>, Integer> coloring, int colorAlpha,
+			Map<Edge<String>, Integer> coloring, int colorAlpha,
 			int colorBeta) {
 
 		List<String> remainingOddVertices = new ArrayList<String>();
@@ -428,9 +429,9 @@ public class K_Coloring {
 	 *            graph to color, must be different of an odd cycle
 	 * @return good 2_coloring of the graph
 	 */
-	public static Map<Graph.Edge<String>, Integer> two_coloring(
+	public static Map<Edge<String>, Integer> two_coloring(
 			final Graph<String, Edge<String>> g) {
-		Map<Graph.Edge<String>, Integer> coloring = new Hashtable<Graph.Edge<String>, Integer>();
+		Map<Edge<String>, Integer> coloring = new Hashtable<Edge<String>, Integer>();
 		List<String> remainingOddVertices = new ArrayList<String>();
 		String vertex2 = null;
 		for (String v : g.vertices()) {
@@ -528,7 +529,7 @@ public class K_Coloring {
 				{ { _2, _4 }, { "14" } }, { { _3, _2 }, { "9" } },
 				{ { _3, T }, { "20" } }, { { _4, _3 }, { "7" } },
 				{ { _4, T }, { "4" } } };
-		Graph<String, Graph.Edge<String>> g4 = new MultiGraph<String, Graph.Edge<String>>();
+		Graph<String, Edge<String>> g4 = new MultiGraph<String, Edge<String>>();
 		for (String v : vertices4)
 			g4.addVertex(v);
 		for (String[][] e : edges4) {
@@ -536,7 +537,7 @@ public class K_Coloring {
 			g4.addEdge(edge);
 		}
 
-		Map<Graph.Edge<String>, Integer> color = h_coloring(g4);
+		Map<Edge<String>, Integer> color = h_coloring(g4);
 		Vizing.displayColoredGraph(g4, color);
 		if (!checkKColoring2(g4, color, Vizing.degreeMax(g4))) {
 			System.out.println("Error : the graph has not a good "
@@ -560,7 +561,7 @@ public class K_Coloring {
 				{ { "17", "19" } }, { { "17", "20" } }, { { "18", "19" } },
 				{ { "18", "20" } }, { { "19", "20" } }, { { "1", "20" } },
 				{ { "6", "20" } } };
-		Graph<String, Graph.Edge<String>> g2 = new MultiGraph<String, Graph.Edge<String>>();
+		Graph<String, Edge<String>> g2 = new MultiGraph<String, Edge<String>>();
 		for (String v : vertices2)
 			g2.addVertex(v);
 		for (String[][] e : edges2) {
@@ -568,7 +569,7 @@ public class K_Coloring {
 			g2.addEdge(edge);
 		}
 
-		Map<Graph.Edge<String>, Integer> color2 = h_coloring(g2);
+		Map<Edge<String>, Integer> color2 = h_coloring(g2);
 		Vizing.displayColoredGraph(g2, color2);
 		if (!checkKColoring2(g2, color2, Vizing.degreeMax(g2))) {
 			System.out.println("Error : the graph has not a good "
@@ -592,7 +593,7 @@ public class K_Coloring {
 				{ { "17", "19" } }, { { "17", "20" } }, { { "18", "19" } },
 				{ { "18", "20" } }, { { "19", "20" } }, { { "1", "2" } },
 				{ { "6", "2" } } };
-		Graph<String, Graph.Edge<String>> g3 = new MultiGraph<String, Graph.Edge<String>>();
+		Graph<String, Edge<String>> g3 = new MultiGraph<String, Edge<String>>();
 		for (String v : vertices3)
 			g3.addVertex(v);
 		for (String[][] e : edges3) {
@@ -600,7 +601,7 @@ public class K_Coloring {
 			g3.addEdge(edge);
 		}
 
-		Map<Graph.Edge<String>, Integer> color3 = h_coloring(g3);
+		Map<Edge<String>, Integer> color3 = h_coloring(g3);
 		Vizing.displayColoredGraph(g3, color3);
 		if (!checkKColoring2(g3, color3, Vizing.degreeMax(g3))) {
 			System.out.println("Error : the graph has not a good "
@@ -910,10 +911,10 @@ public class K_Coloring {
 	 * @return Map which contains colors associated with edges. Uncolored edges
 	 *         do not appear in the map.
 	 */
-	public static Map<Graph.Edge<String>, Integer> naiveK_Coloration(
-			Graph<String, Graph.Edge<String>> g, int k) {
-		Map<Graph.Edge<String>, Integer> coloring = new HashMap<Graph.Edge<String>, Integer>();
-		for (Graph.Edge<String> currentEdge : g.edges()) {
+	public static Map<Edge<String>, Integer> naiveK_Coloration(
+			Graph<String, Edge<String>> g, int k) {
+		Map<Edge<String>, Integer> coloring = new HashMap<Edge<String>, Integer>();
+		for (Edge<String> currentEdge : g.edges()) {
 			coloring.put(currentEdge,
 					getMinorColor(g, coloring, currentEdge.source(), k));
 		}

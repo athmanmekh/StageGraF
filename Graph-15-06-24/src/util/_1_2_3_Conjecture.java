@@ -8,7 +8,8 @@ import java.util.Map;
 import graph.DirectedEdge;
 import graph.Graph;
 import graph.MultiGraph;
-import graph.Graph.Edge;
+
+import static graph.Graph.Edge;
 
 public class _1_2_3_Conjecture {
 
@@ -24,9 +25,9 @@ public class _1_2_3_Conjecture {
 	 *            graph to color
 	 * @return
 	 */
-	public static Map<Graph.Edge<String>, Integer> five_coloring(
+	public static Map<Edge<String>, Integer> five_coloring(
 			final Graph<String, Edge<String>> g) {
-		Map<Graph.Edge<String>, Integer> coloring = new HashMap<Graph.Edge<String>, Integer>();
+		Map<Edge<String>, Integer> coloring = new HashMap<Edge<String>, Integer>();
 		for (Edge<String> e : g.edges()) {
 			coloring.put(e, 3);
 		}
@@ -224,7 +225,7 @@ public class _1_2_3_Conjecture {
 	}
 
 	private static int getWeight(final Graph<String, Edge<String>> g,
-			final Map<Graph.Edge<String>, Integer> coloring, String vertex) {
+			final Map<Edge<String>, Integer> coloring, String vertex) {
 
 		int weight = 0;
 		for (Edge<String> e : g.incidentEdges(vertex)) {
@@ -235,7 +236,7 @@ public class _1_2_3_Conjecture {
 	}
 
 	private static void changeSetColor(final Graph<String, Edge<String>> g,
-			Map<Graph.Edge<String>, Integer> coloring,
+			Map<Edge<String>, Integer> coloring,
 			Map<String, Integer> setColor, String vertex, Edge<String> e) {
 		if (DEBUG) {
 			System.out.println("change : " + vertex);
@@ -251,7 +252,7 @@ public class _1_2_3_Conjecture {
 	}
 
 	private static void nextState(final Graph<String, Edge<String>> g,
-			Map<Graph.Edge<String>, Integer> coloring,
+			Map<Edge<String>, Integer> coloring,
 			List<String[]> listIVertex, Map<String, Integer> setColor,
 			String vertex, String vj) {
 		boolean loopStop = false;
@@ -317,7 +318,7 @@ public class _1_2_3_Conjecture {
 				{ { _2, _4 }, { "14" } }, { { _3, _2 }, { "9" } },
 				{ { _3, T }, { "20" } }, { { _4, _3 }, { "7" } },
 				{ { _4, T }, { "4" } } };
-		Graph<String, Graph.Edge<String>> g4 = new MultiGraph<String, Graph.Edge<String>>();
+		Graph<String, Edge<String>> g4 = new MultiGraph<String, Edge<String>>();
 		for (String v : vertices4)
 			g4.addVertex(v);
 		for (String[][] e : edges4) {
@@ -325,7 +326,7 @@ public class _1_2_3_Conjecture {
 			g4.addEdge(edge);
 		}
 
-		Map<Graph.Edge<String>, Integer> color = five_coloring(g4);
+		Map<Edge<String>, Integer> color = five_coloring(g4);
 		displayColoredGraph(g4, color);
 		if (!checkWeightColoring(g4, color)) {
 			System.out.println("error");
@@ -348,7 +349,7 @@ public class _1_2_3_Conjecture {
 				{ { "17", "19" } }, { { "17", "20" } }, { { "18", "19" } },
 				{ { "18", "20" } }, { { "19", "20" } }, { { "1", "20" } },
 				{ { "6", "20" } } };
-		Graph<String, Graph.Edge<String>> g2 = new MultiGraph<String, Graph.Edge<String>>();
+		Graph<String, Edge<String>> g2 = new MultiGraph<String, Edge<String>>();
 		for (String v : vertices2)
 			g2.addVertex(v);
 		for (String[][] e : edges2) {
@@ -356,7 +357,7 @@ public class _1_2_3_Conjecture {
 			g2.addEdge(edge);
 		}
 
-		Map<Graph.Edge<String>, Integer> color2 = five_coloring(g2);
+		Map<Edge<String>, Integer> color2 = five_coloring(g2);
 		displayColoredGraph(g2, color2);
 		if (!checkWeightColoring(g2, color2)) {
 			System.out.println("error");
@@ -365,8 +366,8 @@ public class _1_2_3_Conjecture {
 
 	}
 
-	private static void displayListColor(Graph<String, Graph.Edge<String>> g,
-			Map<Graph.Edge<String>, Integer> coloring, String vertex) {
+	private static void displayListColor(Graph<String, Edge<String>> g,
+			Map<Edge<String>, Integer> coloring, String vertex) {
 
 		System.out.print("\n" + vertex + "(" + getWeight(g, coloring, vertex)
 				+ ") : ");
@@ -392,8 +393,8 @@ public class _1_2_3_Conjecture {
 	 * @param coloring
 	 *            contains color of the edge of g
 	 */
-	public static void displayColoredGraph(Graph<String, Graph.Edge<String>> g,
-			Map<Graph.Edge<String>, Integer> coloring) {
+	public static void displayColoredGraph(Graph<String, Edge<String>> g,
+			Map<Edge<String>, Integer> coloring) {
 		for (String vertex : g.vertices()) {
 			displayListColor(g, coloring, vertex);
 		}

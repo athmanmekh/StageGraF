@@ -3,7 +3,9 @@ package graph;
 import java.util.Collection;
 import java.util.Set;
 
-class PartialMultiGraph<V, E extends Graph.Edge<V>> extends SubMultiGraph<V, E>
+import static graph.Graph.Edge;
+
+class PartialMultiGraph<V, E extends Edge<V>> extends SubMultiGraph<V, E>
 		implements PartialGraph<V, E> {
 
 	public PartialMultiGraph(MultiGraph<V, E> supergraph, Set<E> edges) {

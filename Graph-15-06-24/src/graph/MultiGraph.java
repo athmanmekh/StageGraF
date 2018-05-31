@@ -10,10 +10,12 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 
+import static graph.Graph.Edge;
+
 import collections.Iterables;
 import collections.Iterators;
 
-public class MultiGraph<V, E extends Graph.Edge<V>> implements Graph<V, E> {
+public class MultiGraph<V, E extends Edge<V>> implements Graph<V, E> {
 
 	private Edges edges = new Edges();
 
@@ -176,7 +178,7 @@ public class MultiGraph<V, E extends Graph.Edge<V>> implements Graph<V, E> {
 			if (modified) {
 				modCount++;
 				@SuppressWarnings("unchecked")
-				Graph.Edge<V> e = (Graph.Edge<V>) o;
+				Edge<V> e = (Edge<V>) o;
 				V source = e.source();
 				V target = e.target();
 				Set<E> me = outgoingMultiEdges.get(source).get(target);

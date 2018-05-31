@@ -7,6 +7,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static graph.Graph.Edge;
+
 public class Coloring {
 
 	/**
@@ -26,7 +28,7 @@ public class Coloring {
 	 * @return a map which associate a color to each vertex. The coloring may be
 	 *         improper, meaning that two neighbors may have the same color.
 	 */
-	public static <V, E extends Graph.Edge<V>, C> Map<V, C> computeImproperColoring(
+	public static <V, E extends Edge<V>, C> Map<V, C> computeImproperColoring(
 			Graph<V, E> g, C[] colors) {
 		Map<V, C> coloring = new HashMap<V, C>();
 		Map<V, int[]> used = new HashMap<V, int[]>();
@@ -63,7 +65,7 @@ public class Coloring {
 	 *         is proper, meaning that two neighbors may not have the same
 	 *         color.
 	 */
-	public static <V, E extends Graph.Edge<V>> Map<V, Integer> computeColoring(
+	public static <V, E extends Edge<V>> Map<V, Integer> computeColoring(
 			Graph<V, E> g) {
 		Map<V, Integer> coloring = new HashMap<V, Integer>();
 		List<Boolean> used = new ArrayList<Boolean>();

@@ -1,11 +1,12 @@
 package util;
 
-import graph.Graph;
 import graph.PartialGraph;
 
 import java.util.Iterator;
 
-public interface RootedSpanningTree<V, E extends Graph.Edge<V>> extends
+import static graph.Graph.Edge;
+
+public interface RootedSpanningTree<V, E extends Edge<V>> extends
 		PartialGraph<V, E> {
 
 	/**

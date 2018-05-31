@@ -6,6 +6,8 @@ import graph.MultiGraph;
 
 import java.util.Random;
 
+import static graph.Graph.Edge;
+
 public class RandomGraphs {
 
 	private static Random rand = new Random();
@@ -24,12 +26,12 @@ public class RandomGraphs {
 	 *
 	 * pseudo-random tree generator. 
 	 */
-	public static Graph<Integer, Graph.Edge<Integer>> randomTree(int n) {
+	public static Graph<Integer, Edge<Integer>> randomTree(int n) {
 		int[] code = new int[n-2];
 		for (int i = 0; i < n-2; i++) {
 			code[i] = rand.nextInt(n-2);
 		}
-		Graph<Integer, Graph.Edge<Integer>> tree = new MultiGraph<Integer, Graph.Edge<Integer>>();
+		Graph<Integer, Edge<Integer>> tree = new MultiGraph<Integer, Edge<Integer>>();
 		int[] d = new int[n];
 		for (int i = 0; i < n; i++) {
 			tree.addVertex(i);
@@ -63,12 +65,12 @@ public class RandomGraphs {
 		return tree;
 	}
 	
-	public static Graph<Integer, Graph.Edge<Integer>> randomDirectedGraph(
+	public static Graph<Integer, Edge<Integer>> randomDirectedGraph(
 			int n, double p) {
 		if (p < 0 || p > 1)
 			throw new IllegalArgumentException("The probability " + p
 					+ "is not between 0 and 1");
-		Graph<Integer, Graph.Edge<Integer>> g = new MultiGraph<Integer, Graph.Edge<Integer>>();
+		Graph<Integer, Edge<Integer>> g = new MultiGraph<Integer, Edge<Integer>>();
 		for (int i = 0; i < n; i++) {
 			g.addVertex(i);
 		}
