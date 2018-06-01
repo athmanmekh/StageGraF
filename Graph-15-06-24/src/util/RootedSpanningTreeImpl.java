@@ -33,7 +33,6 @@ import java.util.Map;
 import java.util.Set;
 
 import collections.Iterables;
-import collections.Predicate;
 
 public class RootedSpanningTreeImpl<V, E extends Graph.Edge<V>> implements
 		RootedSpanningTree<V, E> {
@@ -161,7 +160,7 @@ public class RootedSpanningTreeImpl<V, E extends Graph.Edge<V>> implements
 				/*
 				 * athman lambda expression
 				 */
-				(e) -> isCoedge(e)
+				e -> isCoedge(e)
 				/*new Predicate<E>() {
 					public boolean predicate(E e) {
 						return isCoedge(e);

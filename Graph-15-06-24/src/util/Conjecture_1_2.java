@@ -27,7 +27,7 @@ import graph.MultiGraph;
 
 import static graph.Graph.Edge;
 
-public class _1_2_Conjecture {
+public class Conjecture_1_2 {
 
 	/**
 	 * Make a proper k-total-weighting coloring of a graph. The coloring will

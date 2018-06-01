@@ -18,8 +18,8 @@ import util.K_Coloring;
 import util.NegativeCircuitException;
 import util.NegativeEdgeException;
 import util.Vizing;
-import util._1_2_3_Conjecture;
-import util._1_2_Conjecture;
+import util.Conjecture_1_2_3;
+import util.Conjecture_1_2;
 
 /**
  * 
@@ -141,7 +141,7 @@ public class GraphsTest {
 	//Vizing.testColor();	
 	//K_Coloring.test();
 		//_1_2_3_Conjecture.test();
-		_1_2_Conjecture.test();
+		Conjecture_1_2.test();
 	}
 
 }

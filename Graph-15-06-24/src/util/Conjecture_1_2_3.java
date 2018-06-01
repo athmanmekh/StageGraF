@@ -27,7 +27,7 @@ import graph.MultiGraph;
 
 import static graph.Graph.Edge;
 
-public class _1_2_3_Conjecture {
+public class Conjecture_1_2_3 {
 
 	public static final boolean DEBUG = false;
 
