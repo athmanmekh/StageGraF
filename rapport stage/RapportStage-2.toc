@@ -2,9 +2,22 @@
 \contentsline {section}{\numberline {1}Introduction}{2}{section.1}
 \contentsline {subsection}{\numberline {1.1}Sujet du stage}{2}{subsection.1.1}
 \contentsline {subsection}{\numberline {1.2}Le contexte du stage}{2}{subsection.1.2}
-\contentsline {section}{\numberline {2}D\IeC {\'e}roulement du stage}{3}{section.2}
-\contentsline {subsection}{\numberline {2.1}Premiere rendu}{3}{subsection.2.1}
-\contentsline {subsection}{\numberline {2.2}Deuxi\IeC {\`e}me rendu}{3}{subsection.2.2}
-\contentsline {subsection}{\numberline {2.3}Troisi\IeC {\`e}me rendu}{3}{subsection.2.3}
-\contentsline {subsection}{\numberline {2.4}Quatri\IeC {\`e}me rendu}{3}{subsection.2.4}
-\contentsline {section}{\numberline {3}Bilan du stage}{3}{section.3}
+\contentsline {section}{\numberline {2}D\IeC {\'e}roulement du stage}{2}{section.2}
+\contentsline {subsection}{\numberline {2.1}premi\IeC {\`e}re semaine}{2}{subsection.2.1}
+\contentsline {subsubsection}{\numberline {2.1.1}Les classes abstraites et les interfaces}{2}{subsubsection.2.1.1}
+\contentsline {subsubsection}{\numberline {2.1.2}Les exceptions}{3}{subsubsection.2.1.2}
+\contentsline {subsubsection}{\numberline {2.1.3}Les varargs}{3}{subsubsection.2.1.3}
+\contentsline {subsection}{\numberline {2.2}Deuxi\IeC {\`e}me semaine}{3}{subsection.2.2}
+\contentsline {subsubsection}{\numberline {2.2.1}Les collection}{3}{subsubsection.2.2.1}
+\contentsline {subsubsection}{\numberline {2.2.2}La g\IeC {\'e}n\IeC {\'e}ricit\IeC {\'e}}{3}{subsubsection.2.2.2}
+\contentsline {subsubsection}{\numberline {2.2.3}Git}{4}{subsubsection.2.2.3}
+\contentsline {subsection}{\numberline {2.3}Troisi\IeC {\`e}me semaine}{4}{subsection.2.3}
+\contentsline {subsubsection}{\numberline {2.3.1}Diagramme UML}{4}{subsubsection.2.3.1}
+\contentsline {subsubsection}{\numberline {2.3.2}Classe interne, locale et anonyme}{4}{subsubsection.2.3.2}
+\contentsline {subsubsection}{\numberline {2.3.3}Corretion des warnings}{4}{subsubsection.2.3.3}
+\contentsline {subsection}{\numberline {2.4}Quatri\IeC {\`e}me semaine}{4}{subsection.2.4}
+\contentsline {subsubsection}{\numberline {2.4.1}Optimisation du code}{4}{subsubsection.2.4.1}
+\contentsline {subsubsection}{\numberline {2.4.2}Lambda expression}{4}{subsubsection.2.4.2}
+\contentsline {subsubsection}{\numberline {2.4.3}Ent\IeC {\^e}te et licence}{4}{subsubsection.2.4.3}
+\contentsline {section}{\numberline {3}Bilan du stage}{4}{section.3}
+\contentsline {section}{\numberline {4}R\IeC {\'e}f\IeC {\'e}rence}{5}{section.4}

@@ -35,20 +35,67 @@ Le sujet du stage est \textit{Publier une bibliothèque sur les graphes et la co
 
 Ce stage rentre dans le cadre du cycle licence, c'est stage obligatoire de 4 semaines minimum, il resprésente l'élément pédagogique 4TTVP18U et il fait partie du semèstre 6 du parcours informatique, l'obtention de ce stage été faite avec une candidature spontané adressé au Maître de Conférences Mr BAUDON Olivier qui fait partie de l'équipe des chercheurs du LaBRI.
 
-\newpage
-
 \section{Déroulement du stage}
 
-Dans cette partie nous allons parler du travaille fait par l'étudiant, des compétences qui ont été mobilisé pour le réaliser ansi que les connaissances et compétences acquis et métrisé .
+Dans cette partie nous allons parler du travaille fait par l'étudiant, des compétences qui ont été mobilisé pour le réaliser ansi que les connaissances et compétences acquis et métrisés.
 
-\subsection{Premiere rendu}
+\subsection{première semaine}
 
+\subsubsection{Les classes abstraites et les interfaces}
 
+Une classe est définie comme abstraite avec le mot clé \textbf{abstract}, Les classes abstraites sont à utiliser lorsqu'une classe mère ne doit pas être instanciée, cette dernière peux t'avoir ce qu'on appelle une méthode abstraite qui est caractérisé par le fait qu'elle n'a pas de corps, comme elle peux t'avoir des méthodes normales, par contre si une classe contient une méthode abstraite, cette classe doit alors être déclarée abstraite.\newline
+Une interface n'est q'une classe abstraite à 100\%, ce qui signifie aucune méthode d'une interface n'a de corps, elle sert à définir un supertype et à utiliser le polymorphisme, pour implémenter dans une classe il faut utiliser le mots clé \textbf{implements}, et on peut implémenter autant qu'on veux dans la même classe, pour que cela soit fait correctement il faut redéfinir toutes les méthodes de l'interface (ou des interfaces) dans la classe concerné.
 
-\subsection{Deuxième rendu}
-\subsection{Troisième rendu}
-\subsection{Quatrième rendu}
+\newpage
+\subsubsection{Les exceptions}
+Lorsqu'un événement que la JVM ne sait pas gérer apparaît, une exception est levée (exemple : division par zéro). une exception correspond donc à une erreur, la superclasse qui gère les exceptions s'appelle \textbf{Exception}. C'est possible aussi de créer une classe d'exception personnalisée qui génère ce que le programmeur considère comme exception mais peux être pas par le JVM, pour y procéder il faut lui hériter de la classe Exception.\newline
+L'instruction qui permet de capturer des exceptions est le bloc \textbf{try{…}catch{}}, si une exception est levée dans le bloc try, les instructions figurant dans le bloc catch seront exécutées pour autant que celui-ci capture la bonne exception levée. On peut aussi prévenir la JVM qu'une méthode est risque de générer une exeption grâce au mot clé \textbf{throws}. Une instanciation d'une exeception est lancée par le biais de l'instruction \textbf{throw}.
+
+\subsubsection{Les varargs}
+Les varargs pemettent de passer un nombre variable d’arguments à une méthode (pourvu qu’ils soient tous du type déclaré dans la signature de la méthode), sans créer explicitement de tableau, en revanche, dans le corps de la méthode, la variable var-arg est considéré comme un banal tableau et peut donc être parcourue par un « foreach », fournir sa taille avec la propriété length.
+Il y a toutefois deux petites limitations à cette syntaxe :
+\begin{itemize}
+\item Il ne peut y avoir qu’un seul var-arg par signature de méthode.
+\item Le var-arg doit toujours être le dernier paramètre.
+\end{itemize}
+
+\subsection{Deuxième semaine}
+
+\subsubsection{Les collection}
+Les collection permet de stocker un nombre variable d'objets, il y a principalement trois types de collection : \textbf{List} et \textbf{Set} qui hérite de l'interface Collection et aussi le type \textbf{Map}. chaque type a ses avantages et ses inconvénients et fournies des fonctionnalités propre à lui.\newline
+Voici quelques différences les différents types de collections:
+\begin{itemize}
+\item Les Collection stockent des objets alors que les Map stockent un couple (clé-valeur).
+\item Si on insére fréquemment des données en milieu de liste, \textbf{LinkedList} est plus aprioprié.
+\item Si on veut rechercher ou accéder à une valeur via une clé de recherche, vaut mieux opter pour une collection de type \textbf{Map}.
+\item Si on veut traiter une grande quantité de données, le type \textbf{Set} convient le plus.
+\end{itemize}
+
+\subsubsection{La généricité}
+La généricité est un concept très utile pour développer des objets travaillant avec plusieurs types de données, ça nous fait gagné du temps au lieu de développer des classes qui traite de façon identique des données de type différent.\newline
+On peut utiliser la généricité sur les objets servant à gérer des collections, et avec l'outil \textbf{wildcard (?)} on indiquer que n'importe quel type peut être traité, mais cela revient à rendre ladite collection en lecture seule ce qui peux être désavantagant. 
+
+\newpage
+\subsubsection{Git}
+Pour Facilité la communication et entre le stagière et l'encadrant pendant tout le stage, même les weekend, la platforme github a été utiliser par pour sauvegader les changements fait sur la bibliothèque et aussi pour encadrer et guider le stagiere au fure et à mesure de son aprentissage.
+
+\subsection{Troisième semaine}
+\subsubsection{Diagramme UML}
+\subsubsection{Classe interne, locale et anonyme}
+\subsubsection{Corretion des warnings}
+
+\subsection{Quatrième semaine}
+\subsubsection{Optimisation du code}
+\subsubsection{Lambda expression}
+\subsubsection{Entête et licence}
 
 \section{Bilan du stage}
+
+\newpage
+\section{Référence}
+https://openclassrooms.com/courses/apprenez-a-programmer-en-java/les-classes-abstraites-et-les-interfaces
+https://openclassrooms.com/courses/apprenez-a-programmer-en-java/les-exceptions
+http://thecodersbreakfast.net/index.php?post/2008/07/23/77-java-les-var-args
+https://openclassrooms.com/courses/apprenez-a-programmer-en-java/les-collections-d-objets
 
 \end{document}
