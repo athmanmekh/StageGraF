@@ -85,7 +85,7 @@ Pour Facilité la communication et entre le stagière et l'encadrant pendant tou
 \subsubsection{Diagramme UML}
 
 La modélisation UML permet de vulgariser les aspects liés à la conception et à l’architecture, propres au logiciel (dans ce cas la bibliothèque), au client (dans ce cas les utilisateurs de cette derniere). Aussi, elle apporte une compréhension rapide du programme à d’autres développeurs externes en cas de reprise du logiciel et facilite sa maintenance. \newline
-Pour ce projet j'ai utilisés \textbf{ObjectAid UML Explorer} qui est un outil de visualisation de code souple et léger pour l'IDE Eclipse. Il affiche le code source Java et les bibliothèques dans des diagrammes de classes et de séquences UML dynamiques qui se mettent automatiquement à jour lorsque mon code change.
+Pour ce projet j'ai utilisés \textbf{ObjectAid UML Explorer} qui est un outil de visualisation de code souple et léger pour l'IDE Eclipse. Il affiche le code source Java et les bibliothèques dans des diagrammes de classes et de séquences UML dynamiques qui se mettent automatiquement à jour lorsque mon code change.\newpage
 La figure suivante représante les diagrammes UML obtenu à partir d'ObjectAid et en précisant les paramètres souhaités :
 
 \begin{center}
@@ -114,9 +114,23 @@ Au début du stage la bibliothèque contenait multiples warning, pour toutes sor
 ~\\
 
 \subsection{Quatrième semaine}
+
 \subsubsection{Optimisation du code}
+
+Une des éthiques de la programmation est la lisibilité du code, donc j'ai essayé de donner à la bibliothéque un code un peu plus lisible et facile à faire. \newline
+J'ai donné a quelque interface un nom plus court, par exemple j'ai ajouté \texteit{import static graph.Graph.Edge;} pour avoir \textit{Edge} au lieu de \textit{Graph.Edge}.\newline
+Pour améliorer la taille du code et ça visité, j'ai eu recours à la nouveauté de java 8 \textbf{les expressions lambda}.
+
 \subsubsection{Lambda expression}
+
+Les expressions lambda sont parmi les nouveaux concepts introduits dans Java 8, leurs intérêt est la redéfinition d'une méthode d'une interface fonctionnelle sans avoir à faire une classe anonyme, donc gain de ligne de code et de visibilité.\newline
+le sytaxe des lambdas expressions est le suivant :\newline
+\textit{(param1, param2, ...) -> \{traitements ; retourne une valeur;\} ;} \newline
+Je les ai utilisé dans plusieurs classes de pckage différents, surtout dans la classe \textit{iterables} du package \textit{collections} et la classe \textit{RootedSpanningTreelmpl} du package \textit{util}.\newline
+
 \subsubsection{Entête et licence}
+
+
 
 \section{Bilan du stage}
 
@@ -137,6 +151,8 @@ les-collections-d-objets
 http://objectaid.com/
 
 http://imss-www.upmf-grenoble.fr/prevert/Prog/Java/CoursJava/classes3.html
+
+https://openclassrooms.com/courses/apprenez-a-programmer-en-java/classes-anonymes-interfaces-fonctionnelles-lambdas-et-references-de-methode
 \end{verbatim}
 
 \end{document}
