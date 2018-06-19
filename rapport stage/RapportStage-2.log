@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Debian) (preloaded format=pdflatex 2017.8.30)  13 JUN 2018 17:08
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Debian) (preloaded format=pdflatex 2018.1.12)  19 JUN 2018 10:45
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -528,6 +528,12 @@ Package babel Info: Making ? an active character on input line 368.
 \FBfnindent=\skip51
 ))
 (/usr/share/texlive/texmf-dist/tex/latex/carlisle/scalefnt.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/tools/verbatim.sty
+Package: verbatim 2014/10/28 v1.5q LaTeX2e package for verbatim enhancements
+\every@verbatim=\toks19
+\verbatim@line=\toks20
+\verbatim@in@stream=\read1
+)
 (/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
 Package: graphicx 2014/10/28 v1.0g Enhanced LaTeX Graphics (DPC,SPQR)
 
@@ -630,12 +636,12 @@ LaTeX Info: Redefining \up on input line 17.
 \scratchbox=\box27
 \nofMPsegments=\count112
 \nofMParguments=\count113
-\everyMPshowfont=\toks19
+\everyMPshowfont=\toks21
 \MPscratchCnt=\count114
 \MPscratchDim=\dimen121
 \MPnumerator=\count115
 \makeMPintoPDFobject=\count116
-\everyMPtoPDFconversion=\toks20
+\everyMPtoPDFconversion=\toks22
 ) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
 
@@ -653,102 +659,114 @@ G,.JBIG2,.JB2,.eps]
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
+<logo_labri_complet_coul.jpg, id=96, 340.03035pt x 165.4983pt>
+File: logo_labri_complet_coul.jpg Graphic file (type jpg)
 
-LaTeX Font Warning: Font shape `T1/cmr/m/n' in size <13.48087> not available
-(Font)              size <14.4> substituted on input line 20.
+<use logo_labri_complet_coul.jpg>
+Package pdftex.def Info: logo_labri_complet_coul.jpg used on input line 24.
+(pdftex.def)             Requested size: 150.14671pt x 73.07957pt.
 
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <14.4> on input line 20.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 20.
-[1
+<Universite_Bordeaux_RVB-01.jpg, id=97, 995.72pt x 399.4925pt>
+File: Universite_Bordeaux_RVB-01.jpg Graphic file (type jpg)
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] (./RapportStage-2.toc
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 3.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 3.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 3.
-)
-\tf@toc=\write4
-\openout4 = `RapportStage-2.toc'.
+<use Universite_Bordeaux_RVB-01.jpg>
+Package pdftex.def Info: Universite_Bordeaux_RVB-01.jpg used on input line 26.
+(pdftex.def)             Requested size: 250.24199pt x 100.39711pt.
+ [1
 
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./logo_labri_complet_coul.
+jpg> <./Universite_Bordeaux_RVB-01.jpg>]
+! Missing } inserted.
+<inserted text> 
+                }
+l.40     \end{titlepage}
+                        
+? 
+Chapitre 1.
+
+Underfull \hbox (badness 10000) in paragraph at lines 68--69
+
+ []
+
+
+! LaTeX Error: There's no line here to end.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.75 \newline
+             
+? 
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.21 \newpage
+l.78 \newpage
               [1
 
 ]
-Chapitre 1.
+Chapitre 2.
 
-Underfull \hbox (badness 10000) in paragraph at lines 29--30
+Underfull \hbox (badness 10000) in paragraph at lines 88--89
+
+ []
+
+LaTeX Font Info:    Try loading font information for T1+cmtt on input line 93.
+(/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
+File: t1cmtt.fd 2014/09/29 v2.5h Standard LaTeX font definitions
+)
+Underfull \hbox (badness 10000) in paragraph at lines 93--94
 
  []
 
 [2
 
 ]
-Chapitre 2.
-
-Underfull \hbox (badness 10000) in paragraph at lines 46--47
+Underfull \hbox (badness 10000) in paragraph at lines 98--99
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 51--52
-
- []
-
-[3
-
-]
-Underfull \hbox (badness 10000) in paragraph at lines 56--57
+Underfull \hbox (badness 10000) in paragraph at lines 100--101
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 58--59
+Underfull \hbox (badness 10000) in paragraph at lines 109--110
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 67--68
+Underfull \hbox (badness 10000) in paragraph at lines 113--114
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 71--72
+Underfull \hbox (badness 10000) in paragraph at lines 124--125
+
+ []
+
+[3]
+Underfull \hbox (badness 10000) in paragraph at lines 132--133
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 82--83
-
- []
-
-[4]
-Underfull \hbox (badness 10000) in paragraph at lines 90--91
+Underfull \hbox (badness 10000) in paragraph at lines 137--138
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 95--96
+Underfull \hbox (badness 10000) in paragraph at lines 139--140
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 97--98
-
- []
-
-[5] <DiagUMLPartie1.png, id=153, 700.6175pt x 484.81125pt>
+[4] <DiagUMLPartie1.png, id=130, 700.6175pt x 484.81125pt>
 File: DiagUMLPartie1.png Graphic file (type png)
 
 <use DiagUMLPartie1.png>
-Package pdftex.def Info: DiagUMLPartie1.png used on input line 103.
+Package pdftex.def Info: DiagUMLPartie1.png used on input line 145.
 (pdftex.def)             Requested size: 500.484pt x 346.3341pt.
 
 
@@ -758,14 +776,14 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.104 \caption
+l.146 \caption
               {\label{fig:DiagUMLPartie1}}
 ? 
-<DiagUMLPartie2.png, id=154, 688.5725pt x 278.03876pt>
+<DiagUMLPartie2.png, id=131, 688.5725pt x 278.03876pt>
 File: DiagUMLPartie2.png Graphic file (type png)
 
 <use DiagUMLPartie2.png>
-Package pdftex.def Info: DiagUMLPartie2.png used on input line 108.
+Package pdftex.def Info: DiagUMLPartie2.png used on input line 150.
 (pdftex.def)             Requested size: 500.484pt x 202.09264pt.
 
 
@@ -775,146 +793,153 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.109 \caption
+l.151 \caption
               {\label{fig:DiagUMLPartie2}\newline Figure 1: \textit{Diagramm...
 
 ? 
-[6 <./DiagUMLPartie1.png> <./DiagUMLPartie2.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 113--114
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 116--117
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 118--119
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 120--121
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 125--127
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 132--133
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 134--135
-
- []
-
-[7]
-Underfull \hbox (badness 10000) in paragraph at lines 139--140
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 142--143
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 144--146
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 147--148
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 151--152
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 153--154
-
- []
-
-
+[5 <./DiagUMLPartie1.png> <./DiagUMLPartie2.png>]
 Underfull \hbox (badness 10000) in paragraph at lines 155--156
 
  []
 
-[8]
+
+Underfull \hbox (badness 10000) in paragraph at lines 158--159
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 160--161
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 162--163
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 167--169
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 174--175
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 176--177
+
+ []
+
+[6]
+Underfull \hbox (badness 10000) in paragraph at lines 181--182
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 186--187
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 188--190
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 191--192
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 195--196
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 197--198
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 199--200
+
+ []
+
+[7]
 Chapitre 3.
 
-Underfull \hbox (badness 10000) in paragraph at lines 178--179
+Underfull \hbox (badness 10000) in paragraph at lines 222--223
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 180--181
+Underfull \hbox (badness 10000) in paragraph at lines 224--225
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 182--183
+Underfull \hbox (badness 10000) in paragraph at lines 226--227
 
  []
 
-[9
+
+Underfull \hbox (badness 10000) in paragraph at lines 228--229
+
+ []
+
+! Undefined control sequence.
+l.230 ...ce rapport en utilisant le langage \LaTaX
+                                                  . Je connaissais déjà ce...
+
+? 
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <12> on input line 230.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 230.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 230.
+[8
 
 ]
-LaTeX Font Info:    Try loading font information for T1+cmtt on input line 188.
-
- (/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
-File: t1cmtt.fd 2014/09/29 v2.5h Standard LaTeX font definitions
-)
-Overfull \hbox (363.80495pt too wide) in paragraph at lines 209--209
+Overfull \hbox (363.80495pt too wide) in paragraph at lines 250--250
 []\T1/cmtt/m/n/12 https://openclassrooms.com/courses/apprenez-a-programmer-en-j
 ava/classes-anonymes-interfaces-fonctionnelles-lambdas-et-references-de-methode
 [] 
  []
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 211.
-[10]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 211.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 257.
+[9]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 257.
  (./RapportStage-2.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 211.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 211.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 257.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 257.
 Package rerunfilecheck Info: File `RapportStage-2.out' has not changed.
-(rerunfilecheck)             Checksum: D4147F1773D0F7DB7C78A8D145EBD6AA;1542.
-
-
-LaTeX Font Warning: Size substitutions with differences
-(Font)              up to 0.91913pt have occurred.
-
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 211.
+(rerunfilecheck)             Checksum: 8B7BF4F14AF26D5DB1B916C53F54A58B;1545.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 257.
  ) 
 Here is how much of TeX's memory you used:
- 7192 strings out of 493013
- 103133 string characters out of 6135682
- 200594 words of memory out of 5000000
- 10630 multiletter control sequences out of 15000+600000
- 15232 words of font info for 37 fonts, out of 8000000 for 9000
+ 7227 strings out of 493013
+ 103896 string characters out of 6135682
+ 200218 words of memory out of 5000000
+ 10660 multiletter control sequences out of 15000+600000
+ 16537 words of font info for 37 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 28i,6n,30p,559b,439s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 28i,4n,30p,594b,439s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/share/texmf/
 fonts/type1/public/cm-super/sfbx1200.pfb></usr/share/texmf/fonts/type1/public/c
 m-super/sfbx1440.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1728.pfb
-></usr/share/texmf/fonts/type1/public/cm-super/sfbx2488.pfb></usr/share/texmf/f
-onts/type1/public/cm-super/sfrm1200.pfb></usr/share/texmf/fonts/type1/public/cm
--super/sfrm1440.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm2074.pfb>
-</usr/share/texmf/fonts/type1/public/cm-super/sfti1200.pfb></usr/share/texmf/fo
-nts/type1/public/cm-super/sftt1200.pfb>
-Output written on RapportStage-2.pdf (11 pages, 263942 bytes).
+></usr/share/texmf/fonts/type1/public/cm-super/sfbx2074.pfb></usr/share/texmf/f
+onts/type1/public/cm-super/sfbx2488.pfb></usr/share/texmf/fonts/type1/public/cm
+-super/sfcc1440.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm0800.pfb>
+</usr/share/texmf/fonts/type1/public/cm-super/sfrm1200.pfb></usr/share/texmf/fo
+nts/type1/public/cm-super/sfrm1440.pfb></usr/share/texmf/fonts/type1/public/cm-
+super/sfti1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sftt1200.pfb>
+Output written on RapportStage-2.pdf (10 pages, 431727 bytes).
 PDF statistics:
- 217 PDF objects out of 1000 (max. 8388607)
- 191 compressed objects within 2 object streams
+ 201 PDF objects out of 1000 (max. 8388607)
+ 172 compressed objects within 2 object streams
  35 named destinations out of 1000 (max. 500000)
- 195 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 205 words of extra memory for PDF output out of 10000 (max. 10000000)
 

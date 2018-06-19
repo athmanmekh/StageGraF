@@ -1,0 +1,806 @@
+\documentclass[12pt, a4paper]{report}
+
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{latexsym}
+\usepackage{subfig}
+\usepackage{float}
+\usepackage{listings}
+
+%\usepackage{algorithm,algorithmic}
+\usepackage[inoutnumbered]{algorithm2e}
+
+
+\SetAlgorithmName{Algorithme}{Nom de l'algorithme}{Liste des algorithmes}
+
+\DontPrintSemicolon % suppression du ; en fin de ligne
+\SetInd{1.5em}{0em}  % pour l'alignement des traits verticaux avec \leftskip
+
+
+\SetKw{r}{\textbf{retourner}}
+
+% Pour chaque
+\SetKw{pc}{\textbf{pour chaque}}
+\SetKw{faire}{\textbf{faire}}
+\SetKwFor{PC}{\pc}{\faire}{\leftskip=1em }{}
+
+% Pour 
+\SetKw{p}{\textbf{pour}}
+\SetKwFor{P}{\p}{\faire}{\leftskip=1em }{}
+
+% Tant que
+\SetKw{tq}{\textbf{tant que}}
+\SetKwFor{TQ}{\tq}{\faire}{\leftskip=1em }{}
+
+% Les blocs
+\SetKw{deb}{\textbf{début}}
+\SetKw{fin}{\textbf{fin}}
+\SetKwFor{algo}{\deb}{}{\fin}{}
+
+\SetKwInput{resultat}{\textbf{Résultat}}
+\SetKwInput{donnees}{\textbf{Données}}
+
+% Condition Si (\Si{}{} Si alors|| \eSi{}{}{} Si alors sinon)
+\SetKw{dSi}{\textbf{si}}
+\SetKw{mSi}{\textbf{alors}}
+\SetKw{dSinon}{\textbf{sinon}}
+\SetKw{fSi}{\textsc{Fin Si}}
+\SetKwIF{SI}{}{}{\dSi}{\mSi}{}{\dSinon}{\leftskip=1em}
+
+%% TIKZ
+\usepackage{tikz}
+\usetikzlibrary{trees,%
+                shapes,%
+                plotmarks,%
+                arrows,%
+                er,%
+                automata,%
+                petri,%
+                calc,%
+                topaths}%
+\usepackage{tkz-graph}
+\usepackage{lineno, setspace}
+%% TIKZ
+
+
+\newtheorem{lemma}{Lemme}
+\newtheorem{definition}{Définition}
+\newtheorem{theorem}{Théorème}
+\newtheorem{proposition}{Proposition}
+\newtheorem{conjecture}{Conjecture}
+\newtheorem{corollary}{Corollaire}
+\newtheorem{remark}{Remarque}
+
+\newcommand{\bpr}{{\bf {Preuve }}}
+\newcommand{\epr}{\hfill$\Box$\\}
+\newcommand{\eprs}{\hfill$\Box$}
+
+
+
+\title{Implémentation d'algorithmes de  reconnaissance de graphes d'intervalles}
+\author{
+	CONSTANS Olivier
+	}
+	
+\begin{document}
+
+\makeatletter
+  \begin{titlepage}
+  \centering
+      {\large\textbf{	Université de Bordeaux\\
+       Département Licence}}\\
+      \includegraphics[width=0.20\textwidth]{logo-labri}
+      \hfill
+      \includegraphics[width=0.50\textwidth]{universite-bordeaux-logo}\\
+    \vspace{4cm}
+      
+       {\LARGE \textbf{\@title}} \\
+    \vspace{2cm}
+     {\large Stage effectué au LaBRI}\\
+      {\large sous la tutelle de M BAUDON}\\
+      {\large Du 15 Mai au 16 Juin 2014}\\
+    \vspace{4em}
+        {\large \@author} \\
+    \vfill
+    	{\large 3ème Année de licence Informatique}\\
+    	{\large \textsc{2013-2014}}\\
+    
+    \end{titlepage}
+
+
+\tableofcontents
+
+\chapter*{\center{Remerciements}}
+
+
+Tout d'abord, je tiens à remercier tout particulièrement et à témoigner ma reconnaissance à M Baudon, mon tuteur de stage pour l'aide qu'il m'a apporté pendant mon stage. Sa disponibilité, sa pédagogie, ses remarques et ses conseils m'ont été utiles dans la réalisation de mon projet de stage.
+
+\chapter{Introduction}
+\section{Cadre du stage}
+Dans le cadre de la formation en Licence Informatique, les étudiants sont amenés à effectuer un stage d'une durée minimum d'un mois, ceci afin de permettre aux étudiants de se familiariser avec le monde du travail et avoir un expérience professionnelle qui les conforteraient dans leur choix d'orientation en master.
+
+Mon stage s'est déroulé au Laboratoire Bordelais de Recherche en Informatique (LaBRI) au sein de l'équipe "Combinatoire et Algorithmique". Il a été effectué sous la tutelle de M Baudon.
+\\
+
+Le LaBRI est une unité de recherche associée au CNRS (UMR 5800), à l'Université de Bordeaux et à l'IPB. Depuis 2002, il est partenaire de l'INRIA. Ses effectifs se sont accrus de façon importante ces dernières années. En mars 2014, il réunit près de 320 personnes, dont 112 enseignants chercheurs (Université de Bordeaux, IPB), 37 chercheurs (CNRS, INRIA), 23 personnels administratifs et techniques (Université de Bordeaux, IPB, CNRS, INRIA) et plus de 140 doctorants,post-doctorants et ingénieurs contractuels. Les missions du LaBRI s'articulent autour de trois axes principaux : recherche (théorique, appliquée), valorisation - transfert de technologie et formation. 
+
+
+Le laboratoire s'articule autour de six équipes thématiques alliant recherche fondamentale, recherche appliquée et transfert technologique :
+\begin{itemize}
+\item Combinatoire et Algorithmique
+\item Méthodes Formelles
+\item Modèles et Algorithmes pour la Bioinformatique et la Visualisation d'informations
+\item Programmation, Réseaux et Systèmes
+\item Supports et Algorithmes pour les Applications Numériques hautes performances 
+\item Image et Son
+\end{itemize}
+
+Chaque équipe est répartie en thèmes. M Baudon travaille dans le thème "Graphes et applications" de l'équipe "Combinatoire et Algorithmique". Voici les deux autres thèmes de cette équipe:
+\begin{itemize}
+\item Algorithmique distribuée
+\item Combinatoire énumérative et algébrique
+\end{itemize}
+
+\section{Sujet du stage}
+	Le sujet de mon stage est de rajouter des algorithmes pour la  reconnaissance des graphes d'intervalles dans une bibliothèque déjà existante en Java de M. Baudon.
+	
+	Durant ce stage, il m'a donc fallu comprendre certaine notions et algorithmes de la théorie des graphes nécessaires pour la réalisation de mon stage.
+	
+	Parallèlement, j'ai dû me familiariser avec la bibliothèque de M. Baudon pour pouvoir par la suite implémenter les algorithmes.
+	
+	Dans la deuxième partie, je vous présente mon travail réalisé durant mon stage. Et dans la troisième partie, je fait un bilan et une conclusion de mon stage et de son déroulement.
+	
+\chapter{Travail réalisé}
+
+\section{Notions de la théorie des graphes}
+
+	Pour pouvoir comprendre mon travail réalisé durant mon stage, il faut connaître certaines notions de la théorie des graphes. Voici ci-dessous les notions de la théorie des graphes nécessaires pour la compréhension de mon travail réalisé. Les définitions et théorèmes m'ont été donné par M.~Baudon, pour plus d'information on pourra consulter par exemple les livres de M.~Distel~\cite{D05} ou de M. Golumbic~\cite{G04}.
+\begin{definition}
+Un {\em graphe} $G$ est un couple $(V, E)$ formé de deux ensembles finis $V = \{v_1, \ldots, v_n\}$ et $E = \{e_1, \ldots, e_m\}$, et où pour tout $i$, $e_i$ est composée de deux éléments de $V$, pas forcément distincts. $V$ est appelé l'ensemble des 
+{\em sommets} et $E$ l'ensemble des {\em arêtes}.
+\end{definition}
+
+Deux arêtes sont dites {\em parallèles} si elles ont les mêmes extrémités. Un ensemble d'arêtes parallèles est appelé {\em arête multiple} .
+Une arête reliant un sommet à lui-même est appelée une {\em boucle}. 
+
+\begin{definition}
+Un graphe est dit simple s'il est sans boucle, ni arête multiple.
+\end{definition}
+
+	Pour la suite, nous n'allons seulement nous intéresser aux graphes simples.
+	
+\begin{definition}
+Le graphe complémentaire d'un graphe simple G est un graphe simple H ayant les mêmes sommets et tel que deux sommets distincts de H soient adjacents si et seulement si ils ne sont pas adjacents dans G.
+\end{definition}
+\begin{figure}[H]
+  \centering
+  \subfloat[Graphe G]{
+    \centering
+    \begin{tikzpicture}[transform shape]
+
+	\Vertex[x=0,y=2]{a}
+	\Vertex[x=0,y=0]{b}
+	\Vertex[x=2,y=0]{c} 
+  	\Vertex[x=2,y=2]{d} 
+ 
+	\Edge(a)(b)
+	\Edge(b)(c) 
+	\Edge(c)(d)
+	\Edge(d)(a)
+ 
+    \end{tikzpicture}
+  }
+  \hspace{2cm}
+  \subfloat[Complémentaire du graphe G]{
+     \centering
+     \begin{tikzpicture}[transform shape]
+
+	\Vertex[x=0,y=2]{a}
+	\Vertex[x=0,y=0]{b}
+	\Vertex[x=2,y=0]{c} 
+  	\Vertex[x=2,y=2]{d} 
+ 
+	\Edge(a)(c)
+	\Edge(b)(d)
+ 
+	\end{tikzpicture} }
+\end{figure}
+\begin{definition}
+Un graphe est triangulé (ou chordal en anglais) si tout cycle de longueur  supérieur ou égale à 4 possède une corde, c'est à dire une arête reliant deux sommets non consécutifs dans le cycle.
+\end{definition}
+
+\begin{figure}[H]
+  \centering
+  \subfloat[Graphe triangulé]{
+    \centering
+    \begin{tikzpicture}[transform shape]
+
+	\Vertex[x=0,y=2]{a}
+	\Vertex[x=0,y=0]{b}
+	\Vertex[x=2,y=0]{c} 
+  	\Vertex[x=2,y=2]{d} 
+ 
+	\Edge(a)(b)
+	\Edge(a)(c)
+	\Edge(b)(c) 
+	\Edge(c)(d)
+ 	\Edge(d)(a)
+ 	
+     
+ 
+    \end{tikzpicture}
+  }
+  \hspace{2cm}
+  \subfloat[Graphe non-triangulé]{
+     \centering
+     \begin{tikzpicture}[transform shape]
+
+	\Vertex[x=0,y=2]{a}
+	\Vertex[x=0,y=0]{b}
+	\Vertex[x=2,y=0]{c} 
+  	\Vertex[x=2,y=2]{d} 
+ 
+	\Edge(a)(b)
+	\Edge(b)(c) 
+	\Edge(c)(d)
+ 	\Edge(d)(a)
+ 
+	\end{tikzpicture} }
+\end{figure}
+
+\begin{definition}
+Un graphe d’intervalles est le graphe d’intersection d’intervalles sur une droite. Donc, étant donné un ensemble I=$\{I_1$,…,$I_n\}$ d’intervalles sur une droite, on lui associe le graphe  G=(V,E) où V=I et deux sommets $I_i$ et $I_j$ sont reliés par une arête si et seulement si $I_i \cap I_j \ne  \emptyset$.
+\end{definition}
+\begin{figure}[H]
+	\centering
+  \subfloat[Graphe d'intervalle]{
+  \centering
+  \begin{tikzpicture}[transform shape]
+
+  \Vertex[x=0,y=2]{a} 
+  \Vertex[x=0,y=0]{b}
+  \Vertex[x=2,y=0]{c}
+  \Vertex[x=2,y=2]{d} 
+  \Vertex[x=4,y=0]{e}
+  \Vertex[x=4,y=2]{f}
+  \Vertex[x=6,y=2]{g}
+  
+ \Edge(a)(b)
+ \Edge(a)(c)
+ \Edge(a)(d)
+ \Edge(b)(c)
+ \Edge(c)(d)
+ \Edge(c)(e)
+ \Edge(c)(f)
+ \Edge(d)(e)
+ \Edge(d)(f)
+ \Edge(f)(g)
+ 
+\end{tikzpicture} }
+
+\subfloat[Intervalles associé au graphes]{
+\centering
+\begin{tikzpicture}[transform shape]
+\draw (0,0) -- (5,0)node[above,pos =0.5]{a};
+\draw (1,2) -- (3,2)node[above,pos =0.5]{b};
+\draw (2,1) -- (10,1)node[above,pos =0.5]{c};
+\draw (4,2) -- (9,2)node[above,pos =0.5]{d};
+\draw (6,0) -- (7,0)node[above,pos =0.5]{e};
+\draw (8,0) -- (12,0)node[above,pos =0.5]{f};
+\draw (11,1) -- (13,1)node[above,pos =0.5]{g};
+\end{tikzpicture} }
+\end{figure}
+
+\begin{definition}
+Un graphe G(V,E) est de comparabilité si il admet une orientation F transitive c'est à dire une orientation des arêtes telle que:
+
+uv $\in$ F et vw $\in$ F $\Rightarrow$ uv $\in$ F
+\end{definition}
+
+\begin{definition}
+Une clique d'un graphe non orienté est un sous-ensemble des sommets de ce graphe qui induit un sous-graphe complet, c'est-à-dire que deux sommets quelconques de la clique sont toujours adjacents.
+\end{definition}
+
+\section{Méthode utilisant les graphes de comparabilité}
+
+	Dans un premiers temps, M. Baudon m'a demandé de réaliser l'algorithme de reconnaissance des graphes d'intervalles en utilisant le propriété suivante:
+\begin{theorem}
+G est un graphe d'intervalle si et seulement si G est triangulé et son complémentaire est un graphe de comparabilité.\cite{GH64}\\
+\end{theorem}
+	
+	Ainsi, je devais implémenter trois algorithmes:
+	\begin{itemize}
+	\item un algorithme de reconnaissance des graphes triangulés.
+	\item un algorithme donnant le complémentaire d'un graphe.
+	\item un algorithme de reconnaissance des graphes de comparabilité.
+	\end{itemize}
+	\subsection{Reconnaissance d'un graphe triangulé}
+	
+	Les graphes triangulés sont caractérisés par l'existence d'un schéma d'élimination simplicial. On dit qu'un sommet est simplicial si son voisinage induit un sous-graphe complet (une clique). Les graphes triangulés peuvent donc être construit (ou réduit) en ajoutant (ou supprimant) un à un des sommets simpliciaux.
+	
+	Nous avons utilisé l'algorithme LexBFS qui construit un ordre d'élimination. Cet ordre est simplicial si et seulement si le graphe est triangulé. Puis nous vérifions que l'ordre d'élimination donné par LexBFS est simplicial ou non.
+
+\begin{algorithm}[H]
+	\caption{LexBFS~\cite{PV}}
+	\donnees{\par\leftskip=1em
+		Un graphe G = ($V$,$E$) \;
+		}
+	\resultat{\par\leftskip=1em
+		Un ordre $\lambda$. $\lambda$ est un ordre d'élimination simplicial $\lambda$ si et seulement si G est triangulé \;
+	}
+	\algo{}{\par\leftskip=1em
+		\PC{sommet x $\in$ $V$}{
+			étiquette(x) = $\emptyset$ \;
+		}
+		\P{ i = n jusqu'à 1}{
+		Choisir un sommet non numéroté  x $\in$ $V$ d'étiquette maximum \;
+		$\lambda$(i) $\leftarrow$ x \;
+		\PC{voisin non numéroté de y de x $\in$ $V$}{
+			Ajouter i à étiquette(y)\;
+		}
+		}	
+	}
+\end{algorithm}
+
+\begin{algorithm}[H]
+	\caption{Vérification que l'ordre LexBFS est simplicial}
+	\donnees{\par\leftskip=1em
+		Un graphe G = ($V$,$E$) \;
+		}
+	\resultat{\par\leftskip=1em
+		Retourne si G est un graphe triangulé.\;
+	}
+	\algo{}{\par\leftskip=1em
+		\PC{ x $\in  V$ dans l'ordre LexBFS}{
+			\eSI{les voisins de x sont une clique}
+			{
+				Supprimer le sommet x de G. \;
+				}{
+				\r faux \;
+		}
+		}	
+		\r vrai \;
+	}
+\end{algorithm}
+\newpage
+\subsubsection{Exemple 1}
+Soit le graphe G:
+
+\begin{figure}[H]
+\begin{tikzpicture}[transform shape]
+
+  \Vertex[x=0,y=2]{a} 
+  \Vertex[x=0,y=0]{b}
+  \Vertex[x=2,y=0]{c}
+  \Vertex[x=2,y=2]{d} 
+  \Vertex[x=4,y=0]{e}
+  \Vertex[x=4,y=2]{f}
+  \Vertex[x=6,y=2]{g}
+  
+ \Edge(a)(b)
+ \Edge(a)(c)
+ \Edge(a)(d)
+ \Edge(b)(c)
+ \Edge(c)(d)
+ \Edge(c)(e)
+ \Edge(c)(f)
+ \Edge(d)(e)
+ \Edge(d)(f)
+ \Edge(f)(g)
+ 
+\end{tikzpicture} 
+
+\caption{Graphe G}
+\label{fig:G}
+\end{figure}
+
+
+On applique le LexBFS sur G:\\
+
+
+\begin{tabular}{| c | c | c | c | c | c | c | c |}
+	\hline
+    & a & b & c & d & e & f & g \\
+    \hline
+   init& $\emptyset$ & $\emptyset$ & $\emptyset$ & $\emptyset$ & $\emptyset$ & $\emptyset$ & $\emptyset$ \\
+  a & $\emptyset$ & 7 & 7 & 7 & $\emptyset$ & $\emptyset$ & $\emptyset$ \\
+  b & $\emptyset$ & 7 & 76 & 7 & $\emptyset$ & $\emptyset$ & $\emptyset$ \\
+  c & $\emptyset$ & 7 & 76 & 75 & 5 & 5 & $\emptyset$ \\
+  d & $\emptyset$ & 7 & 76 & 75 & 54 & 54 & $\emptyset$ \\
+  e & $\emptyset$ & 7 & 76 & 75 & 54 & 54 & $\emptyset$ \\
+  f & $\emptyset$ & 7 & 76 & 75 & 54 & 54 & 2 \\
+  g & $\emptyset$ & 7 & 76 & 75 & 54 & 54 & 2 \\
+  \hline
+ \end{tabular}\\\\
+ 
+ 
+ Ainsi l'ordre LexBFS est g,f,e,d,c,b,a. Maintenant on vérifie si l'ordre est simplicial.\\
+ 
+ \begin{tabular}{| c | l |}
+ \hline
+    x & voisinage de x  \\
+    \hline
+    g & $\{f\}$ est une clique\\
+    f & $\{d,c\}$ est une clique\\ 
+    e & $\{d,c\}$ est une clique \\
+    d & $\{a,c\}$ est une clique\\
+    c & $\{a,b\}$ est une clique\\
+    b & $\{a\}$ est une clique\\
+    a & $\emptyset$ est une clique\\
+    \hline
+ \end{tabular}\\\\
+
+ 
+ 	Donc G est un graphe triangulé.\\
+\newpage
+\subsubsection{Exemple 2}
+Soit le graphe G':\\
+
+\begin{tikzpicture}[transform shape]
+ 
+  \Vertex[x=0,y=2]{a} 
+  \Vertex[x=0,y=0]{b}
+  \Vertex[x=2,y=0]{c}
+  \Vertex[x=2,y=2]{d} 
+  \Vertex[x=4,y=0]{e}
+  \Vertex[x=4,y=2]{f}
+  \Vertex[x=6,y=2]{g}
+  
+ \Edge(a)(b)
+ \Edge(a)(d)
+ \Edge(b)(c)
+ \Edge(c)(d)
+ \Edge(c)(e)
+ \Edge(c)(f)
+ \Edge(d)(e)
+ \Edge(d)(f)
+ \Edge(f)(g)
+ 
+\end{tikzpicture} \\
+
+On applique le LexBFS sur G':\\
+
+\begin{tabular}{ | c | c | c | c | c | c | c | c | }
+	\hline
+    & a & b & c & d & e & f & g \\
+    \hline
+   init& $\emptyset$ & $\emptyset$ & $\emptyset$ & $\emptyset$ & $\emptyset$ & $\emptyset$ & $\emptyset$ \\
+  a & $\emptyset$ & 7 & $\emptyset$ & 7 & $\emptyset$ & $\emptyset$ & $\emptyset$ \\
+  b & $\emptyset$ & 7 & 6 & 7 & $\emptyset$ & $\emptyset$ & $\emptyset$ \\
+  d & $\emptyset$ & 7 & 65 & 7 & 5 & 5 & $\emptyset$ \\
+  c & $\emptyset$ & 7 & 65 & 7 & 54 & 54 & $\emptyset$ \\
+  e & $\emptyset$ & 7 & 65 & 7 & 54 & 54 & $\emptyset$ \\
+  f & $\emptyset$ & 7 & 65 & 7 & 54 & 54 & 2\\
+  g & $\emptyset$ & 7 & 65 & 7 & 54 & 54 & 2\\
+  \hline
+ \end{tabular}\\\\
+ 
+  Ainsi l'ordre LexBFS est g,f,e,c,d,b,a. Maintenant on vérifie si l'ordre est simplicial.\\
+ 
+ \begin{tabular}{| c | l |}
+ \hline
+    x & voisinage de x  \\
+    \hline
+    g & $\{f\}$ est une clique\\
+    f & $\{d,c\}$ est une clique\\ 
+    e & $\{d,c\}$ est une clique \\
+    c & $\{b,d\}$ n'est pas une clique \\ 
+    \hline
+ \end{tabular}\\\\
+ 
+ 
+ 	Donc G' n'est  pas un graphe triangulé.\\
+ 
+	\subsection{Création du complémentaire}
+	 
+	 Pour construire le complémentaire d'un graphe G, il suffit de prendre tout les couples de sommets du graphe G et vérifier leur adjacence. Si les 2 sommets ne sont pas adjacents dans G, il faut rajouter une arête entre les deux sommets dans G'.
+
+
+	\subsection{Reconnaissance d'un graphe de comparabilité}
+	
+		Après quelques recherches sur le sujet, nous avons trouvé un article sur l'orientation transitive de Mc. Cornell et M. Spinrad~\cite{CS97}. Mais j'ai eu du mal à comprendre leur algorithme. Nous avons finalement préféré changer de méthode pour reconnaître un graphe d'intervalles. Nous avons suivi la méthode présentée par Christophe Paul et Laurent Viennot~\cite{PV}.
+	
+
+\section{Méthode utilisant les arbres de cliques}
+
+	M. Baudon et moi avons trouvé un article de Christophe Paul et Laurent Viennot~\cite{PV}. Cet article traite des utilisations de l'algorithme LexBFS. Un des algorithmes proposé permet de reconnaître un graphe d'intervalles par une autre caractérisation que l'utilisation des graphes de comparabilité:
+	\begin{theorem}
+	Un graphe d'intervalles est  un graphe triangulé dont l'arbre de cliques est une chaîne.~\cite{PV}
+	\end{theorem}
+	
+	 Autrement dit, il existe un ordonnancement des cliques maximales tel que les cliques contenant un sommet donné soient consécutives. On appelle un tel arrangement, une chaîne de cliques. Un graphe d'intervalles peut posséder plusieurs chaînes de cliques. Trouver une chaîne de cliques permet de reconnaître un graphe d'intervalle et d'identifier les intervalles.
+	
+	Ainsi, deux algorithmes devaient être implémentés:
+	\begin{itemize}
+	\item un algorithme de reconnaissance de graphe triangulé (le même que dans la méthode utilisant les graphes de comparabilité);
+	\item un algorithme vérifiant l'existence d'une chaîne de cliques.
+	\end{itemize}
+	
+	Pour vérifier l'existence d'une chaine de  cliques, il faut préalablement calculer un arbre de cliques ce qui être obtenue en modifiant LexBFS.
+	
+	\subsection{Construction de l'arbre de cliques}
+	
+	Dans l'article de de Christophe Paul et Laurent Viennot, ils proposent un algorithme permettant de construire l'arbre de cliques en utilisant LexBFS (algorithme déjà étudié durant le stage pour prouver qu'un graphe est triangulé).
+	
+	\begin{figure}[H]
+
+	\begin{algorithm}[H]
+	\caption{Lex-BFS et arbre de cliques~\cite{PV}}
+	\donnees{\par\leftskip=1em
+		Un graphe G = ($V$,$E$). \;
+		}
+	\resultat{\par\leftskip=1em
+	Si G est triangulé : un ordre d'élimination simplicial et un arbre de clique $T$ = ($I$,$F$). \;
+	}
+	\algo{}{\par\leftskip=1em
+		\PC{sommet x $\in$ $V$}{
+			étiquette(x) = $\emptyset$ \;
+		}
+		étiquette\_précédente = $\emptyset$ \;
+		j = 0 \;
+		\P{ i = n jusqu'à 1}{
+		Choisir un sommet non numéroté  x $\in$ $V$ d'étiquette maximum \;
+		\eSI{étiquette\_précédente $\notin$ étiquette(x)}{
+			j = j+1 \;
+			Créer la clique maximale $C_j$ = étiquette(x) $\cup$ $\{x\}$ \;
+			C(dernier(x)) est le père de $C_j$ dans $T$ \;
+			L'arc de l'arbre $C_j$C(dernier(x)) est étiqueté par le séparateur minimal: \\ $S_j$ = $C_j$ $\cap$ C(dernier(x)) = étiquette(x) \;
+		}{
+		$C_j$ = $C_j$ $\cup$ $\{x\}$ \;
+		}
+		\PC{voisin non numéroté de y de x $\in$ $V$}{
+			Ajouter i à étiquette(y)\;
+			dernier(y) = x\;
+		}
+		étiquette\_précédente = étiquette(x) \;
+		$\lambda$(i) $\leftarrow$ x \;
+		C(x) = j \;
+		}	
+	}
+\end{algorithm}
+	\end{figure}
+	Grâce à cet algorithme nous obtenons un arbre de cliques et l'ordre de découverte des cliques par LexBFS, nécessaire pour la recherche d'une chaîne de cliques et la reconnaissance d'un graphe d'intervalle.
+	
+\subsubsection{Exemple 1}
+	Appliquons l'algorithme au graphe G de la figure~\ref{fig:G} :\\\\
+	\begin{tabular}{| c | c| c| c| c| c| c| c| c| c| c| c| c| c|}
+	\hline
+    & a & b & c & d & e & f & g & \no  C & $C_1$ & $C_2$ & $C_3$ & $C_4$ & $C_5$\\
+    \hline
+   init& $\emptyset$ & $\emptyset$ & $\emptyset$ & $\emptyset$ & $\emptyset$ & $\emptyset$ & $\emptyset$ &&&&&&\\
+   
+  a & $\emptyset$ & 7 & 7 & 7 & $\emptyset$ & $\emptyset$ & $\emptyset$ & 1 & $\{a\}$ &&&& \\
+  b & $\emptyset$ & 7 & 76 & 7 & $\emptyset$ & $\emptyset$ & $\emptyset$ & 1 & $\{a,b\}$&&&&\\
+  c & $\emptyset$ & 7 & 76 & 75 & 5 & 5 & $\emptyset$ & 1 & $\{a,b,c\}$&&&&\\
+  d & $\emptyset$ & 7 & 76 & 75 & 54 & 54 & $\emptyset$ & 2 & $\{a,b,c\}$ & $\{a,c, d\}$&&& \\
+  e & $\emptyset$ & 7 & 76 & 75 & 54 & 54 & $\emptyset$ & 3 & $\{a,b,c\}$ & $\{a,c, d\}$ & $\{c, d, e\}$&& \\
+  f & $\emptyset$ & 7 & 76 & 75 & 54 & 54 & 2 & 4 &  $\{a,b,c\}$ & $\{a,c, d\}$ & $\{c, d, e\}$ &  $\{c, d, f\}$&\\
+  g & $\emptyset$ & 7 & 76 & 75 & 54 & 54 & 2 & 5 &  $\{a,b,c\}$ & $\{a,c, d\}$ & $\{c, d, e\}$ &  $\{c, d, f\}$ & $\{f, h\}$ \\
+  \hline
+ \end{tabular}\\\\
+ 
+ On obtiens l'arbre suivant :
+ \begin{figure}[H]
+\begin{center}
+
+\begin{tikzpicture}[transform shape]
+
+  \Vertex[x=0,y=0, L=$C_1$]{a}
+  \Vertex[x=2,y=0, L=$C_2$]{b}
+  \Vertex[x=4,y=0, L=$C_3$]{c}
+  \Vertex[x=6,y=0, L=$C_4$]{d}
+  \Vertex[x=8,y=0, L=$C_5$]{e}
+  
+ \Edge(a)(b)
+ \Edge(b)(c)
+ \Edge(c)(d)
+ \Edge(d)(e)
+ 
+\end{tikzpicture} 
+\end{center}
+\caption{Arbre de cliques du graphe G}
+\label{fig:treecliquesG}
+\end{figure}
+
+ \subsubsection{Exemple 2}
+ Appliquons l'algorithme au graphe H :\\\\
+  \begin{figure}[H]
+\begin{center}
+
+\begin{tikzpicture}[transform shape]
+
+  \Vertex[x=2,y=4]{a}
+  \Vertex[x=0,y=4]{b}
+  \Vertex[x=1,y=2]{c}
+  \Vertex[x=2,y=0]{d}
+  \Vertex[x=3,y=2]{e}
+  \Vertex[x=4,y=4]{f}
+ \Edge(a)(b)
+ \Edge(a)(c)
+ \Edge(a)(e)
+ \Edge(a)(f)
+ \Edge(b)(c)
+ \Edge(c)(d)
+ \Edge(c)(e)
+ \Edge(d)(e)
+ \Edge(e)(f)
+ 
+\end{tikzpicture} 
+\end{center}
+\caption{Graphe H}
+\label{fig:H}
+\end{figure}
+	\begin{tabular}{| c | c| c| c| c| c| c| c| c| c| c| c|}
+	\hline
+    & a & b & c & d & e & f & \no  C & $C_1$ & $C_2$ & $C_3$ & $C_4$ \\
+    \hline
+   init& $\emptyset$ & $\emptyset$ & $\emptyset$ & $\emptyset$ & $\emptyset$ & $\emptyset$&&&&& \\ 
+  a & $\emptyset$ & 6 & 6 & $\emptyset$ & 6 & 6 & 1 & $\{a\}$ &&&\\
+  b & $\emptyset$ & 6 & 65 & $\emptyset$ & 6 & 6 & 1 & $\{a, b\}$&&& \\
+ c & $\emptyset$ & 6 & 65 & 4 & 64 & 6 & 1 & $\{a, b, c\}$ &&&\\
+ e & $\emptyset$ & 6 & 65 & 43 & 64 & 63 & 2 & $\{a, b, c\}$ &$\{a, c, e\}$&& \\
+ f & $\emptyset$ & 6 & 65 & 43 & 64 & 63 & 3 & $\{a, b, c\}$ &$\{a, c, e\}$ &$\{c, e, f\}$&\\
+ d & $\emptyset$ & 6 & 65 & 43 & 64 & 63 & 4 & $\{a, b, c\}$ &$\{a, c, e\}$ &$\{c, e, f\}$ &$\{c, e, d\}$\\
+ \hline
+ \end{tabular}\\\\
+ 
+ On obtiens l'arbre suivant :
+ \begin{figure}[H]
+\begin{center}
+
+\begin{tikzpicture}[transform shape]
+
+  \Vertex[x=1,y=4, L=$C_1$]{a}
+  \Vertex[x=1,y=2, L=$C_2$]{b}
+  \Vertex[x=0,y=0, L=$C_3$]{c}
+  \Vertex[x=2,y=0, L=$C_4$]{d}
+  
+ \Edge(a)(b)
+ \Edge(b)(c)
+ \Edge(b)(d)
+ 
+\end{tikzpicture} 
+\end{center}
+\caption{Arbre de cliques du graphe H}
+\label{fig:treecliquesH}
+\end{figure}
+	\subsection{Reconnaissance d'un graphe d'intervalle}
+	L'algorithme de reconnaissance partitionne l'ensemble des cliques en s'appuyant sur un arbre de cliques. La partition de départ est constituée de la dernière clique visitée par LexBFS et des autres cliques. Dans une chaîne de cliques, les cliques contenant un sommet donné sont consécutives : chaque raffinement du partitionnement sépare la clique courante des cliques ne contenant pas un sommet pivot par les cliques qui le contiennent. 
+
+{\small
+	\begin{algorithm}[H]
+	\caption{Partitionnement des cliques maximales~\cite{PV}}
+	\donnees{\par\leftskip=1em
+		Un graphe G = ($V$,$E$). \;
+		}
+	\resultat{\par\leftskip=1em
+	Si G est un graphe d'intervalle : une chaîne de cliques $L$. \;
+	}
+	\algo{}{\par\leftskip=1em
+		Calculer les cliques maximales et un arbre de clique T = ($I$,$F$). \;
+		\SI{ G n'est pas triangulé}{
+		\r "G n'est pas un graphe d'intervalle" \;
+		}
+		Soit $I$ l'ensemble des cliques maximales $I$ = \{$C_1$,...,$C_k$\} \;
+		Soit L la liste ordonnée ($I$) \;
+		pivots = $\emptyset$ est un pile vide \;
+		\TQ{il existe une classe $I_c$ qui n'est pas un singleton dans\\ L = ($I_1$,....,$I_l$)}{
+			\eSI{pivots = $\emptyset$}{
+			Soit $C_l$ la dernière clique de $I_c$ découverte par Lex-BFS\;
+			Remplacer $I_c$ par $I_c$  $\backslash$ \{$C_l$\}, \{$C_l$\}dans L \;
+			$C$ = \{$C_l$\} \;}{
+			Choisir un sommet x non utilisé de pivots (supprimer ceux qui ont été utilisé) \;
+			Soit $C$ l'ensemble de toutes les cliques contenant x \;}
+			\eSI{toutes les cliques de $C$ apparaissent dans des classes consécutives}{
+			Soit $I_a$ la première classe contenant une telle clique \;
+			Soit $I_b$ la dernière classe contenant une telle clique \;
+			}{
+			\r "G n'est pas un graphe d'intervalle" \;}
+		}
+		\SI{
+			Une classe strictement entre $I_a$ et $I_b$ contient une clique n'appartenant pas à $C$}
+	{\r "G n'est pas un graphe d'intervalle" \;}
+	Remplacer $I_a$ par $I_a$ $\backslash$ $C$, $I_a$ $\cap$ $C$ et $I_b$ par $I_b$ $\cap$ $C$; $I_b$ $\backslash$ $C$ \;
+		\PC{arc $C_iC_j$ de l'arbre de cliques connectant une clique $C_i$ $\in$ $C$ à une clique $C_j$ $\notin$ $C$}{
+			pivots = pivots $C_i$ $\cap$ $C_j$\;
+			Supprimer $C_iC_j$de l'arbre de cliques
+		}
+	}
+\end{algorithm}
+}
+Pour rendre plus lisible les cliques, nous noterons la clique $\{a, b, c\} $ connectant les sommets a, b, c sous la forme abc .
+\subsubsection{Exemple 1}
+Appliquons l'algorithme au graphe G de la figure~\ref{fig:G} :\\
+G est bien triangulé.\\
+L'arbre de cliques T est celui de la figure~\ref{fig:treecliquesG} et l'ordre LexBFS est g,f,e,d,c,b,a.\\
+
+\begin{tabular}{ | c | c | c | c |}
+\hline
+  pivot  & L  & $I_a$ & $I_b$ \\
+    \hline
+   init& $\{\{dfc,dec,dac,abc,fg\}\}$ & &  \\
+   $\emptyset $ &  $\{\{dfc,dec,dac,abc\},\{fg\}\}$ & $\{fg\}$ & $\{fg\}$ \\
+   $f$ & $\{\{dec,dac,abc\},\{dfc\},\{fg\}\}$ & $\{dfc,dec,dac,abc\}$ & $\{fg\}$ \\
+ $c$ & $\{\{dec,dac,abc\},\{dfc\},\{fg\}\}$ & $\{dec,dac,abc\}$ & $\{dfc\}$\\  
+  $d$ & $\{\{abc\},\{dec,dac\},\{dfc\},\{fg\}\}$ & $\{dec,dac,abc\}$ & $\{dfc\}$  \\  
+  $a$ & $\{\{abc\},\{dec,dac\},\{dfc\},\{fg\}\}$ & $\{abc\}$ & $\{dac,dec\}$  \\  
+  \hline
+ \end{tabular}\\\\
+ 
+\begin{tabular}{| c | c |c |}
+  \hline
+  pivot  & C & empiler\\
+    \hline
+   $\emptyset $ & $\{fg\}$ & $f$ \\
+   $f$ & $\{dfc,fg\}$ &$c,d$ \\
+   $c$ & $\{dfc,dec,dac,abc\}$ &$c,d$ \\  
+   $d$ & $\{dfc,dec,dac\}$ &$a,c$ \\  
+   $a$ & $\{dac,abc\}$ &$a,c$ \\  
+   \hline
+ \end{tabular}\\\\
+ 
+ L ne possède que des singletons, donc G est un graphe d'intervalles.
+
+
+ \subsubsection{Exemple 2}
+ Appliquons l'algorithme au graphe H de la figure~\ref{fig:H} :\\
+G est bien triangulé.\\
+L'arbre de cliques T est celui de la figure~\ref{fig:treecliquesH} et l'ordre LexBFS est d,f,e,c,b,a.\\\\
+{\small
+\begin{tabular}{ | c | c | c | c | c | c |}
+\hline
+  pivot  & L  & $I_a$ & $I_b$ & C & empiler\\
+    \hline
+   init& $\{\{fa,dec,eac,abc\}\}$ & & & & \\
+   $\emptyset $ &  $\{\{efa,dec,eac\},\{abc\}\}$ & $\{abc\}$ & $\{abc\}$ & $\{abc\}$ & $a,c$ \\
+   $c$ & $\{\{efa\},\{dec,eac\},\{abc\}\}$ & $\{efa,dec,eac\}$ & $\{abc\}$ & $\{dec,eac,abc\}$ &$e,a$ \\
+ $a$ & $\{\{efa\},\{dec,eac\},\{abc\}\}$ & $\{efa\}$ & $\{abc\}$ & $\{eac,efa,abc\}$ & \\
+ \hline
+ \end{tabular}
+ }\\\\
+ 
+ Mais il existe une classe $\{dec,eac\}$ strictement entre $I_a$ et $I_b$ contenant une clique $\{dec\}$ n'appartenant pas à $C$. Le graphe H n'est donc pas un graphe d'intervalles.
+ 
+
+\chapter{Conclusion}
+
+\section{Travail réalisé}
+ 
+ 	Les algorithmes présentés plus haut ont été implémentés dans la bibliothèque Java de M Baudon, dans un fichier nommé "Stage.java". Ainsi si mon travail ne satisfait pas totalement M Baudon, il est simple de le supprimer ou de le modifier avant de l'intégrer réellement dans la bibliothèque, en rajoutant le contenu du fichier "Stage.java" dans le fichier "Graphes.java".\\
+ 	
+ 	
+ 	
+ 	Le fichier "Stage.java" contient les fonctions suivantes:
+ 	\begin{itemize}
+ 	\item Graph$<$V, E$>$ complement(Graph$<$V, E$>$ g) : retourne le complémentaire du graphe g.\\
+ 	\item boolean isClique(Graph$<$V, E$>$ g, Set$<$V$>$ e): qui vérifie si un ensemble de sommets e est bien une clique dans le graphe g.\\
+ 	\item List$<$V$>$ lexBFS(Graph$<$V, E$>$ g): retourne un ordre d'élimination.\\
+ 	\item boolean isTriangulated(Graph$<$V, E$>$ g): vérifie si g est un graphe triangulé.\\
+ 	\item LexBFSResults$<$V$>$ lexBFSAndCliqueTree(Graph$<$V, E$>$ g): retourne un ordre d'élimination et un arbre de clique. L'ordre d'élimination est simplicial si g est triangulé.\\
+ 	\item  boolean isPerfectEliminationOrdering(Graph$<$V, E$>$ g, List$<$V$>$ l) : vérifie si la liste de sommet l est un ordre d'élimination simplicial dans le graphe g.\\
+ 	\item  Graph$<$Set$<$V$>$, Graph.Edge$<$Set$<$V$>>>$ cliqueTree(Graph$<$V, E$>$ g): retourne l'arbre de clique du graphe G.\\
+ 	\item boolean isIntervalGraph(Graph$<$V, E$>$ g): vérifie si le graphe G est un graphe d'intervalles.\\
+ 	\end{itemize}
+ 	
+ 	De plus des fichiers de test et des tests unitaires ont été ajoutés pour vérifier le bon fonctionnement des fonctions réalisées.
+ 	
+ 	\section{Répartition du travail}
+	La durée du stage était de 4 semaines. La première semaine ainsi que la moitié de la seconde ont consisté à prendre en main la bibliothèque Java de M.~Baudon et à la tentative de réalisation de l'algorithme de reconnaissance d'un graphe d'intervalles en se servant des graphes de comparabilité. La semaine et demie suivante a servi à la réalisation de l'algorithme de reconnaissance grâce aux arbres de clique. Durant cette période, la majeure partie de temps a été utilisée dans la compréhension des algorithmes, alors que peu de temps, on suffit pour leur implémentation. 
+La dernière semaine du stage, ainsi que les deux semaines suivantes, ont servi à l'élaboration du rapport du stage et à la prise en main des outils Latex nécessaire pour sa réalisation.
+
+	\section{Bilan}
+		
+	J'ai rencontré quelques difficultés durant le stage. La compréhension de nouveaux algorithmes s'est montré plus difficile que ce que j'imaginais. Cela m'a permis de mettre en évidence un de mes défauts, la précipitation.
+	
+	Lors de ces 4 semaines de stage au sein du LaBRI, j'ai pu mettre en pratique et consolider certaines de mes connaissances théoriques acquises durant mes années de formation de licence, notamment mes connaissances en Java et sur la théorie des graphes. J'ai appris de nouveaux algorithmes et de nouvelles notions comme les graphes d'intervalles ou les graphes de comparabilité. De plus j'ai eu l'occasion de m'initier aux tests unitaires avec JUnit. Ces nouvelles connaissance seront un atout pour ma future formation et lors de ma vie professionnel.
+	
+	Le travail demandé a été réalisé, à la fois en terme de programmation et de documentation (présent rapport).
+	
+	
+\nocite{HCPV00, GHP95}
+\bibliographystyle{unsrt}
+\bibliography{bibliographie}
+\end{document}

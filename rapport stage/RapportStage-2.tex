@@ -6,8 +6,43 @@
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage[francais]{babel}
-
+\usepackage{verbatim} 
 \usepackage{graphicx}
+
+\title{Publier une bibliothèque sur les graphes et la compléter}
+\author{
+	CONSTANS Olivier
+	}
+	
+\begin{document}
+
+\makeatletter
+  \begin{titlepage}
+  \centering
+      {\large\textbf{Université de Bordeaux\\
+       Département Licence}\\
+      \includegraphics[width=0.30\textwidth]{logo_labri_complet_coul.jpg}
+      \hfill
+      \includegraphics[width=0.50\textwidth]{Universite_Bordeaux_RVB-01.jpg}\\
+    \vspace{4cm}
+      
+       {\LARGE \textbf{\@title}} \\
+    \vspace{2cm}
+     {\large Stage effectué au LaBRI}\\
+      {\large sous la tutelle de M BAUDON}\\
+      {\large Du 14 Mai au 15 Juin 2018}\\
+    \vspace{4em}
+        {\large \@author} \\
+    \vfill
+    	{\large 2ème Année de licence Informatique}\\
+    	{\large \textsc{2017-2018}}\\
+    
+    \end{titlepage}
+
+\begin{comment}
+\includegraphics[width=0.30\textwidth]{logo_labri_complet_coul.jpg}
+\hfill
+\includegraphics[width=0.50\textwidth]{Universite_Bordeaux_RVB-01.jpg}
 
 \title{Rapport de stage \\
 Licence Informatique 3\up{ème} année}
@@ -19,7 +54,7 @@ tuteur : Olivier Baudon}
 \maketitle
 \tableofcontents
 \newpage
-
+\end{comment}
 \chapter{Introduction au stage}
 
 Dans cette partie, je vais présenter le thème du stage, les prérequis exigés, le travail demandé et dans quel contexte ce sujet a été posé.
@@ -31,12 +66,13 @@ Ce stage rentre dans le cadre du cycle licence, c'est un stage obligatoire de 4 
 \section{Sujet du stage}
 
 Le sujet du stage est \textit{Publier une bibliothèque sur les graphes et la compléter}. Le responsable m'a fourni la version actuelle de sa bibliothèque Java sur les graphes, l'objectif du stage était de la rendre publiable.\newline
+
 Les taches principales à accomplir était:
-\begin{enumerat}
+\begin{enumerate}
 \item rajouter les commentaires (javadoc) nécessaire
 \item adapter l'existant à la version 8 de Java.
-\end{enumerat}
-
+\end{enumerate}
+\newline
 Des connaissances en "Programmation orientée objet" et en "Théorie des graphes" m'était nécessaire pour comprendre la conception et l'implémentation de la bibliothèque. Heureusement pour moi, j'avais déjà acquis les notions de base sur ces deux domaines au cours de mes études universitaires dans mon pays natal, mais cela ne m'était pas suffisant car il me fallait des connaissances plus profondes. J'ai donc lu quelques cours en ligne et coder des petits programmes avant le début du stage pour être au niveau exigé. 
 
 \newpage
@@ -128,7 +164,7 @@ Il est possible de définir une classe interne, sans lui donner de nom par déri
 
 \subsection{Correction des warnings}
 
-Au début du stage la bibliothèque contenait multiples warning, pour toutes sortes de dysfonctionnement ou de problème éventuelle il fait retirer ces warnings. Pour cela chaque warning a été traité individuellement selon le problème qui le génère. Pour procéder à cette opération j'ai eu recours à deux solutions : les solutions proposées sur internet et l'utilitaire de réparation des warnings intégré a l'IDE Ecplise.
+Au début du stage la bibliothèque contenait de multiples warnings, pour toutes sortes de dysfonctionnement ou de problèmes éventuels. Il fallait retirer ces warnings. Pour cela chaque warning a été traité individuellement selon le problème qui le génère. Pour procéder à cette opération j'ai eu recours à deux solutions : les solutions proposées sur internet et l'utilitaire de réparation des warnings intégré a l'IDE Ecplise.
 ~\\
 
 \section{Quatrième semaine}
@@ -139,7 +175,7 @@ Une des éthiques de la programmation est la lisibilité du code, donc j'ai essa
 
 J'ai donné à quelque interface un nom plus court, par exemple j'ai ajouté \textit{import static graphe. Graph. Edge;} pour avoir \textit{Edge} au lieu de \textit{Graph. Edge}.\newline
 
-Pour améliorer la taille du code et ça visitait, j'ai eu recours à la nouveauté de java 8 \textbf{les expressions lambda}.
+Pour améliorer la taille du code et sa visibilité, j'ai eu recours à une nouveauté de Java 8 \textbf{les lambda expressions}.
 
 \newpage
 ~\\
@@ -147,20 +183,20 @@ Pour améliorer la taille du code et ça visitait, j'ai eu recours à la nouveau
 
 % Le plus changements qu'il y a eu entre JAVA 7 et JAVA 8 concernent les Lambda expressions. les lambda expressions sont utilisés lorsqu'il definir un objet un interface et sa methode. Lorquel'objet interface ne contien qu'une seul methode, il est possible de reduire les ligne de code qui definisssent l'oblet et leurs methodes. dans cet exemple on a reussi a passer de X ligne a y ligne pour definir la methode l'objet Z. Pour trouver ces lamda expressions j'ai du chercher le classes anonymes (cf le liens en anexe)
 
-Les expressions lambda sont parmi les nouveaux concepts introduits dans Java 8, leur intérêt est la redéfinition d'une méthode d'une interface fonctionnelle sans avoir à faire une classe anonyme, donc gain de ligne de code et de visibilité.\newline
+Les lambda expressions sont parmi les nouveaux concepts introduits dans Java 8. Leur intérêt est la redéfinition d'une méthode d'une interface fonctionnelle sans avoir à faire une classe anonyme, donc gain de ligne de code et de visibilité.\newline
 
-le sytaxe des lambdas expressions est le suivant :\newline
+la sytaxe des lambdas expressions est la suivante :\newline
 \textit{(param1, param2, ...) -> \{traitements ; retourne une valeur;\} ;} \newline
 
-Je les ai utilisé dans plusieurs classes de pckage différents, surtout dans la classe \textit{iterables} du package \textit{collections} et la classe \textit{RootedSpanningTreelmpl} du package \textit{util}.\newline
+Je les ai utilisé dans plusieurs classes de package différents, surtout dans la classe \textit{Iterables} du package \textit{collections} et la classe \textit{RootedSpanningTreelmpl} du package \textit{util}.\newline
 
 \subsection{Entête et licence}
 
-Pour publier un programme (publiothèque, application, logiciel, ....) développer par soi-même ou en collaboration avec une équipe, il est très important de lui attribuer les copyrights désirer et la licence adéquate, cela permet de protéger le programme et définit avec son cocontractant (exploitant ou utilisateur) les conditions dans lesquelles ce programme peut être utilisé, diffusé ou modifié.\newline
+Pour publier un programme (bibliothèque, application, logiciel, ....) développé par soi-même ou en collaboration avec une équipe, il est très important de lui attribuer les copyrights désirés et la licence adéquate, cela permet de protéger le programme et définit avec son cocontractant (exploitant ou utilisateur) les conditions dans lesquelles ce programme peut être utilisé, diffusé ou modifié.\newline
 
-J'ai utilisé le plugiciel d'éclipse \textbf{Éclipse copyright Generator}, pour appliquer un commentaire d'en-tête de copyright à tous les fichiers sources dans les projets, ainsi pour ajouter une licence GNU \textbf{Lesser Général Public Licence v3.0} souhaiter par le tuteur de stage.\newline 
+J'ai utilisé l'outil d'Eclipse \textbf{Eclipse copyright Generator}, pour appliquer un commentaire d'en-tête de copyright à tous les fichiers sources dans les projets, ainsi pour ajouter une licence GNU \textbf{Lesser Général Public Licence v3.0} souhaiter par le tuteur de stage.\newline 
 
-voici une copie de l'en-tête de copyright utiliser dans le projet:\newline
+voici une copie de l'en-tête de copyright utilisé dans le projet:\newline
 
 \begin{center}
 \textit{Copyright (C) 2018 Olivier Baudon}
@@ -185,11 +221,13 @@ voici une copie de l'en-tête de copyright utiliser dans le projet:\newline
 
 Le stage était réparti en deux parties, une première partie théorique et la deuxième pratique.\newline
 
-La partie théorique été très importante pour moi, elle permet de construire base solide en Java et d'enrocher mes connaissances en théorie des graphes. En premier temps j'ai consacré mon temps à comprendre en détaillent les piliers de ce langage, que je connaissais avant, mais je ne le m'égrisais pas bien. comprendre et maîtriser les exceptions et la généricité est un grand plus à mes connaissances d'informaticien, je les ai trouvés très utiles, et rendais le code plus souple et robuste.\newline
+La partie théorique été très importante pour moi, elle permet de construire une base solide en Java et d'enrichir mes connaissances en théorie des graphes. En premier temps j'ai consacré mon temps à comprendre en détail les piliers de ce langage, que je connaissais avant, mais je ne le m'égrisais pas bien. comprendre et maîtriser les exceptions et la généricité est un grand plus à mes connaissances d'informaticien, je les ai trouvés très utiles, et rendais le code plus souple et robuste.\newline
 
-La partie pratique m'a permis de mettre en oeuvre ce que j'ai aprit précédemment, j'ai rencontré quelques difficultés à trouver la bonne syntaxe pour quelques cas, mais ça n'a pas duré avec l'aide du tuteur et de l'internet, une fois que j'ai les lambdas expressions, je les ai trouvés très utilisé et facile de mettre en oeuvre. \newline
+La partie pratique m'a permis de mettre en oeuvre ce que j'ai aprit précédemment, j'ai rencontré quelques difficultés à trouver la bonne syntaxe pour quelques cas, mais ça n'a pas duré avec l'aide du tuteur et de l'internet, une fois que j'ai les lambdas expressions, je les ai trouvés très utile et facile à mettre en oeuvre. \newline
 
-Ce stage est un grand plus moi, en premier lieu j'ai apris à comprendre un code déjà écrit et savoir le modifier/améliorer sans affecter les autres parties du programme, ainsi que mériter beaucoup mieux la programmation orientée objet, en utilisant le langage Java. J'ai apris aussi à utiliser les plugins pour accélérer le rythme du travaille, tel que les outiles pour tracer des diagrammes UML ou pour génér copyright/licences.
+Ce stage est un grand plus moi, en premier lieu j'ai apris à comprendre un code déjà écrit et savoir le modifier/améliorer sans affecter les autres parties du programme, ainsi que maitriser beaucoup mieux la programmation orientée objet, en utilisant le langage Java. J'ai apris aussi à utiliser les plugins pour accélérer le rythme du travail, tel que les outils pour tracer des diagrammes UML ou pour générer les copyright/licences.\newline
+
+J'ai écrit ce rapport en utilisant le langage \LaTaX. Je connaissais déjà ce langage mais je ne le maitrisais pas bien. Ecrire mon premier rapport de stage en utilisant ce système de composition de documents, m'a permit d'avoir une meilleur sur \LaTeX, et de réaliser son importance à automatiser le travaille et d'améliorer l'écriture des formules scientifique, ansi que réduire le temps de redaction des documents.
 
 \newpage
 \section{Référence}
