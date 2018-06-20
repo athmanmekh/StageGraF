@@ -132,7 +132,7 @@ La figure suivante représente les diagrammes UML obtenus à partir d'ObjectAid 
 \begin{center}
 \includegraphics[width=1.05\textwidth]{DiagUML.png}
 \caption{\label{fig:DiagUMLPartie1}}
-\newline Figure 1: \textit{Diagrammes UML du paquetage "graphe" }}
+\newline Figure 1: \textit{Diagrammes UML du paquetage "graphe" }
 \end{center}
 
 \newpage
@@ -146,11 +146,13 @@ Une classe interne définie dans un bloc est une classe interne dont la portée 
 Il est possible de définir une classe interne, sans lui donner de nom par dérivation d'une super classe, ou par implémentation d’une interface, c'est ce qu'on appelle une classe anonyme. Elles sont utiles lorsqu'on a besoin de définir une classe pour ne l'utiliser qu'une seule fois.\newline
 
 
-\subsection{Correction des warnings}
+\subsection{Correction des warnings et  ajout des commentaires}
 
-Au début du stage la bibliothèque contenait de multiples warnings, pour toutes sortes de dysfonctionnement ou de problèmes éventuels. Il fallait retirer ces warnings. Pour cela chaque warning a été traité individuellement selon le problème qui le génère. Pour procéder à cette opération j'ai eu recours à deux solutions : les solutions proposées sur internet et l'utilitaire de réparation des warnings intégré a l'IDE Ecplise.
+Au début du stage la bibliothèque contenait de multiples warnings, pour toutes sortes de dysfonctionnement ou de problèmes éventuels. Il fallait retirer ces warnings. Pour cela chaque warning a été traité individuellement selon le problème qui le génère. Pour procéder à cette opération j'ai eu recours à deux solutions : les solutions proposées sur internet et l'utilitaire de réparation des warnings intégré a l'IDE Ecplise.\newline
+
+Commenter un code, c’est décrire l’implémentation d’un objet, d’une méthode, d’une propriété, ou de toute variable spéciale. Après avoir corrigé les  warnings, j'ai cherché les parties ambigu ou complexe du code, et je les ai commenté en suivant l'exemple des commentaire qui existait déjà, quand la nécessité ou le besoin de confort l’exigent. cette tâche représente une partie importante du travaille que j'ai fait, car pour comprendre une partie du code, faut comprendre son intérêt, son fonctionnement, ça hiérarchie et ses dépendances, et cela prend beaucoup de temps et nécessite une bonne concetration.
 ~\\
-
+\newpage
 \section{Quatrième semaine}
 
 \subsection{Optimisation du code}
@@ -161,7 +163,6 @@ Par exemple dans le code j'ai ajouté \texttt{import static graphe.Graph.Edge;} 
 
 Pour améliorer la taille du code et sa visibilité, j'ai eu recours à une nouveauté de Java 8 \textbf{les lambda expressions}.
 
-\newpage
 ~\\
 \subsection{Lambda expressions}
 
@@ -179,7 +180,7 @@ Pour publier un programme (bibliothèque, application, logiciel, ....) développ
 J'ai utilisé l'outil d'Eclipse \textbf{Eclipse copyright Generator}, pour appliquer un commentaire d'en-tête de copyright à tous les fichiers sources dans les projets, ainsi pour ajouter une licence GNU \textbf{Lesser Général Public Licence v3.0} souhaiter par le tuteur de stage.\newline 
 
 Voici une copie de l'en-tête de copyright utilisé dans le projet:\newline
-
+\newpage
 \begin{center}
 \textit{Copyright (C) 2018 Olivier Baudon}
 
@@ -197,6 +198,17 @@ Voici une copie de l'en-tête de copyright utilisé dans le projet:\newline
 \textit{along with this program.  If not, see <http://www.gnu.org/licenses/>.}
 \end{center}
 
+\subsection{Javadoc}
+
+J'ai apris durant le stage l'importance d'un outil qui s'appel \textbf{Javadoc}. C'est un outil qui permet de créer automatiquement une documentation d'API en format \textit{HTML}, depuis les commentaires présents dans un le codes sources en Java. \textbf{Javadoc} est très intéressant car c'est standart industriel pour la documentation Java que presque tout dévellopeur en langage Java utilise. voici dans un partie l'exemple du \textbf{Javadoc} créer en utilisant eclipse, de la classe \texttt{Iterables} du paquetage \texttt{collections}:
+
+\begin{center}
+\includegraphics[width=1.05\textwidth]{Javadoc.png}
+\caption{\label{fig:DiagUMLPartie1}}
+\newline Figure 1: \textit{Partie du Javadoc de la classe Iterables }
+\end{center}
+
+
 \chapter{Bilan du stage} 
 
 \section{Bilan}
@@ -210,13 +222,6 @@ La partie pratique m'a permis de mettre en oeuvre ce que j'ai apris précédemme
 Ce stage est un grand plus moi, en premier lieu j'ai apris à comprendre un code déjà écrit et savoir le modifier/améliorer sans affecter les autres parties du programme, ainsi que maitriser beaucoup mieux la programmation orientée objet, en utilisant le langage Java. J'ai apris aussi à utiliser les plugins pour accélérer le rythme du travail, tel que les outils pour tracer des diagrammes UML ou pour générer les copyright/licences.\newline
 
 J'ai écrit ce rapport en utilisant \LaTaX. Je connaissais déjà cet outile mais je ne le maitrisais pas bien. Ecrire mon premier rapport de stage en utilisant ce système de composition de documents, m'a permit d'avoir une meilleure connaissance sur \LaTeX, et de réaliser son importance à automatiser le travaille et d'améliorer l'écriture des formules scientifique, ansi que réduire le temps de rédaction des documents.
-
-
-\begin{comment}
-1) ajout des commentaires 
-2) java doc 
-3) ilustrer avec des exemples
-\end{comment}
 
 
 \newpage
